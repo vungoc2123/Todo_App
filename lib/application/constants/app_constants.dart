@@ -1,0 +1,6 @@
+class AppConstants {
+  static const int startPage = 0;
+  static const int pageSize = 10;
+  static const String notFoundImage =
+      'https://img.freepik.com/free-vector/hand-drawn-no-data-illustration_23-2150696458.jpg?size=338&ext=jpg&ga=GA1.1.553209589.1713830400&semt=ais';
+}
