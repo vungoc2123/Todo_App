@@ -12,6 +12,16 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vector_graphics/vector_graphics.dart';
 
+class $AssetsAnimationIconGen {
+  const $AssetsAnimationIconGen();
+
+  /// File path: assets/animation_icon/loading.json
+  String get loading => 'assets/animation_icon/loading.json';
+
+  /// List of all assets
+  List<String> get values => [loading];
+}
+
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
@@ -35,6 +45,16 @@ class $AssetsIconsGen {
   List<SvgGenImage> get values => [account, binoculars, building, frame, home];
 }
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/.getKeep
+  String get aGetKeep => 'assets/images/.getKeep';
+
+  /// List of all assets
+  List<String> get values => [aGetKeep];
+}
+
 class $AssetsTranslationsGen {
   const $AssetsTranslationsGen();
 
@@ -51,7 +71,10 @@ class $AssetsTranslationsGen {
 class Assets {
   Assets._();
 
+  static const $AssetsAnimationIconGen animationIcon =
+      $AssetsAnimationIconGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
