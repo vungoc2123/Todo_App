@@ -1,7 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:todo/application/constants/app_colors.dart';
 import 'package:todo/gen/assets.gen.dart';
 import 'package:todo/presentation/screens/home_tab/widget/bottom_bar_widget.dart';
 
