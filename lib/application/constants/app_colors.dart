@@ -6,7 +6,7 @@ class AppColors {
   static const stroke = Color(0xFFD0DDE9);
   static const pinkSubText = Color(0xFFFF006F);
   static const action = Color(0xFF2B99D4);
-
+  static const blue = Color(0xFF613be7);
   //color
   static const blueBold = Color(0xFF1a3666);
   static const grey1 = Color(0xFF344053);
