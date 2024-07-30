@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo/application/enums/load_status.dart';
 import 'package:todo/gen/assets.gen.dart';
+import 'package:todo/presentation/common_widgets/app_loading.dart';
+import 'package:todo/presentation/common_widgets/app_toast.dart';
 import 'package:todo/presentation/routes/route_name.dart';
 import 'package:todo/presentation/screens/login/cubit/login_cubit.dart';
 import 'package:todo/presentation/screens/login/cubit/login_state.dart';
@@ -32,10 +34,14 @@ class _LoginScreenState extends State<LoginScreen> {
     cubit = BlocProvider.of<LoginCubit>(context);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
+
       final User? user = FirebaseAuth.instance.currentUser;
+      user?.refreshToken;
       if (user != null) {
+        showDialog(context: context, builder:(_) => const AppLoading());
         if (_debounce?.isActive ?? false) _debounce!.cancel();
-        _debounce = Timer(const Duration(milliseconds: 1000), () {
+        _debounce = Timer(const Duration(milliseconds: 1500), () {
+          AppToast.showToastSuccess(context, title: "login success");
           Navigator.pushNamedAndRemoveUntil(
             context,
             RouteName.homeTab,
@@ -53,11 +59,16 @@ class _LoginScreenState extends State<LoginScreen> {
       body: BlocListener<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state.status == LoadStatus.success) {
+            AppToast.showToastSuccess(context, title: state.messenger ?? '');
             Navigator.pushNamedAndRemoveUntil(
                 context,
                 RouteName.homeTab,
                 arguments: const HomeTabArguments(index: 0),
                 (route) => false);
+          }
+
+          if(state.status == LoadStatus.failure){
+            AppToast.showToastError(context, title: state.messenger ?? '');
           }
         },
         child: SafeArea(
