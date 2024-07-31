@@ -29,6 +29,7 @@ class EditSchedule extends StatefulWidget {
 class _EditScheduleState extends State<EditSchedule> {
   late CreateEditScheduleCubit _cubit;
   late ValueNotifier<DateTime> date;
+
   late ValueNotifier<TimeOfDay> timeStart;
   late ValueNotifier<TimeOfDay> timeEnd;
 
@@ -50,13 +51,15 @@ class _EditScheduleState extends State<EditSchedule> {
       listener: (context, state) {
         if (state.loadStatus == LoadStatus.loading) {
           showDialog(
-              context: context, builder: (context) => const AppLoading(),barrierDismissible: false);
+              context: context,
+              builder: (context) => const AppLoading(),
+              barrierDismissible: false);
         }
         if (state.loadStatus == LoadStatus.success) {
           Navigator.of(context).pop();
           AppToast.showToastSuccess(context, title: "Thêm mới lịch thành công");
         }
-        if(state.loadStatus == LoadStatus.failure){
+        if (state.loadStatus == LoadStatus.failure) {
           Navigator.of(context).pop();
           AppToast.showToastError(context, title: "Thêm mới lịch thất bại");
         }
@@ -99,12 +102,9 @@ class _EditScheduleState extends State<EditSchedule> {
             SizedBox(
               height: 12.h,
             ),
-            AppLabelTextField(
-                showLabel: false,
-                defaultValue: widget.event?.title ?? "",
-                hintText: tr("title")),
-            AppLabelTextField(
-              showLabel: false,
+            CustomLabelTextField(
+                defaultValue: widget.event?.title ?? "", hintText: tr("title")),
+            CustomLabelTextField(
               defaultValue: widget.event?.content ?? "",
               hintText: tr("note"),
               maxLine: 4,
@@ -215,7 +215,6 @@ class _EditScheduleState extends State<EditSchedule> {
             ),
             AppButton(
               onPressed: () {
-                print(timeStart.value.isStartTimeBeforeEndTime(timeEnd.value));
                 final event = EventResponse(
                     idEvent: "01",
                     uId: "abc",
@@ -230,11 +229,8 @@ class _EditScheduleState extends State<EditSchedule> {
               },
               title: widget.event != null ? tr("editSchedule") : tr("add"),
               color: Colors.blue,
-              fontSize: 16.r,
-              textColor: AppColors.white,
               radius: 12.r,
-              width: 1.sw,
-              fontWeight: FontWeight.w400,
+              textStyle: AppTextStyle.textBase.copyWith(color: AppColors.white),
             ),
             SizedBox(
               height: 32.h,
