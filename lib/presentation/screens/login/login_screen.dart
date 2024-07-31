@@ -26,7 +26,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   late final LoginCubit cubit;
   Timer? _debounce;
-
+  
   @override
   void initState() {
     // TODO: implement initState
@@ -105,7 +105,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     ButtonLoginWidget(
                         nameButton: tr("loginEmail"),
-                        icon: Image.asset(Assets.icons.gmail.path, width: 20.w, height: 20.w,)),
+                        icon: Image.asset(Assets.icons.gmail.path, width: 20.w, height: 20.w,),
+                        action: ()=> Navigator.pushNamed(context, RouteName.loginEmail),
+                    ),
                   ],
                 ),
               ),

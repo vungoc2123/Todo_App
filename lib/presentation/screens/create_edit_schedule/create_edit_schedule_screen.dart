@@ -73,12 +73,10 @@ class _EditScheduleState extends State<EditSchedule> {
           SizedBox(
             height: 12.h,
           ),
-          AppLabelTextField(
-              showLabel: false,
+          CustomLabelTextField(
               defaultValue: widget.event?.title ?? "",
               hintText: tr("title")),
-          AppLabelTextField(
-            showLabel: false,
+          CustomLabelTextField(
             defaultValue: widget.event?.content ?? "",
             hintText: tr("note"),
             maxLine: 4,
@@ -192,11 +190,7 @@ class _EditScheduleState extends State<EditSchedule> {
             },
             title: widget.event != null ? tr("editSchedule") : tr("add"),
             color: Colors.blue,
-            fontSize: 16.r,
-            textColor: AppColors.white,
             radius: 12.r,
-            width: 1.sw,
-            fontWeight: FontWeight.w400,
           ),
           SizedBox(
             height: 32.h,

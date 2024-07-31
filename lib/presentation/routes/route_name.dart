@@ -3,4 +3,6 @@ class RouteName {
   static const homeTab = '/home-tab';
   static const login = '/login';
   static const home = '/home';
+  static const loginEmail = '/loginEmail';
+  static const signup = '/signup';
 }

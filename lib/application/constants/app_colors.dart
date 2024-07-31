@@ -7,8 +7,11 @@ class AppColors {
   static const pinkSubText = Color(0xFFFF006F);
   static const action = Color(0xFF2B99D4);
   static const blue = Color(0xFF613be7);
+  static const colorPrimary = Color(0xFF0abde3);
+
   //color
   static const blueBold = Color(0xFF1a3666);
+  static const blueLink = Color(0xFF54a0ff);
   static const grey1 = Color(0xFF344053);
   static const yellow = Color(0xFFFFAF33);
   static const red = Color(0xFFf04438);

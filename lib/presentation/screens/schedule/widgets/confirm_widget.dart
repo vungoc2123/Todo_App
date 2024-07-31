@@ -47,8 +47,6 @@ class ConfirmWidget extends StatelessWidget {
                     child: AppButton(
                       title: tr("yes"),
                       color: AppColors.yellow,
-                      fontSize: 16.r,
-                      textColor: AppColors.white,
                       radius: 12.r,
                     )),
                 SizedBox(width: 20.w,),
@@ -60,8 +58,6 @@ class ConfirmWidget extends StatelessWidget {
                     },
                     title: tr("cancel"),
                     color: Colors.lightBlueAccent,
-                    fontSize: 16.r,
-                    textColor: AppColors.white,
                     radius: 12.r,
                   ),
                 ),
