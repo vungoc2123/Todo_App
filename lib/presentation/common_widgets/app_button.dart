@@ -59,7 +59,7 @@ class AppButton extends StatelessWidget {
                 icon!,
                 SizedBox(width: 4.w),
               ],
-              AppText(title, fontSize: fontSize, color: textColor, fontWeight: fontWeight),
+              AppText(title, fontSize: fontSize, color: textColor, fontWeight: fontWeight,),
             ],
           ),
         ),

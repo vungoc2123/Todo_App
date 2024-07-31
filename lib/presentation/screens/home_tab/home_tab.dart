@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:todo/gen/assets.gen.dart';
 import 'package:todo/presentation/screens/home_tab/widget/bottom_bar_widget.dart';
+import 'package:todo/presentation/screens/schedule/schedule_screen.dart';
 
 class HomePageModel {
   final String name;
@@ -41,9 +42,9 @@ class _HomeTabState extends State<HomeTab> {
       child: Container(),
     ),
     HomePageModel(
-      name: tr("company"),
+      name: tr("schedule"),
       iconUrl: Assets.icons.building.path,
-      child: Container(),
+      child: const ScheduleScreen(),
     ),
     HomePageModel(
       name: tr("explore"),

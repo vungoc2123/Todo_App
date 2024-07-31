@@ -1,5 +1,21 @@
 {
   "loginApple": "Đăng nhập với Apple",
   "loginGoogle": "Đăng nhập với Google",
-  "loginEmail": "Đăng nhập với email"
+  "loginEmail": "Đăng nhập với email",
+  "schedule": "Lịch trình",
+  "add": "Thêm",
+  "addNewSchedule": "Thêm lịch trình",
+  "editSchedule": "Chỉnh sửa",
+  "title": "Tiêu đề",
+  "note": "Ghi chú",
+  "startTime": "Thời gian bắt đầu: ",
+  "endTime": "Thời gian kết thúc: ",
+  "day": "Chọn ngày: ",
+  "time": "Thời gian: ",
+  "confirmDelete": "Bạn chắc chắc muốn xóa không?",
+  "cancel": "Đóng",
+  "yes": "Đồng ý",
+  "hour": "Giờ",
+  "minutes" : "Phút",
+  "pickTime": "Chọn thời gian"
 }

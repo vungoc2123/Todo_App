@@ -50,12 +50,49 @@ class $AssetsIconsGen {
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
 
+  /// File path: assets/icons/icon_calendar.svg
+  SvgGenImage get iconCalendar =>
+      const SvgGenImage('assets/icons/icon_calendar.svg');
+
+  /// File path: assets/icons/icon_checkbox.svg
+  SvgGenImage get iconCheckbox =>
+      const SvgGenImage('assets/icons/icon_checkbox.svg');
+
+  /// File path: assets/icons/icon_clock_three.svg
+  SvgGenImage get iconClockThree =>
+      const SvgGenImage('assets/icons/icon_clock_three.svg');
+
+  /// File path: assets/icons/icon_close.svg
+  SvgGenImage get iconClose => const SvgGenImage('assets/icons/icon_close.svg');
+
+  /// File path: assets/icons/icon_delete.svg
+  SvgGenImage get iconDelete =>
+      const SvgGenImage('assets/icons/icon_delete.svg');
+
+  /// File path: assets/icons/icon_edit.svg
+  SvgGenImage get iconEdit => const SvgGenImage('assets/icons/icon_edit.svg');
+
   /// File path: assets/icons/plus.svg
   SvgGenImage get plus => const SvgGenImage('assets/icons/plus.svg');
 
   /// List of all assets
-  List<dynamic> get values =>
-      [account, apple, binoculars, building, frame, gmail, google, home, plus];
+  List<dynamic> get values => [
+        account,
+        apple,
+        binoculars,
+        building,
+        frame,
+        gmail,
+        google,
+        home,
+        iconCalendar,
+        iconCheckbox,
+        iconClockThree,
+        iconClose,
+        iconDelete,
+        iconEdit,
+        plus
+      ];
 }
 
 class $AssetsImagesGen {
