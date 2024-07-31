@@ -50,9 +50,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/home.svg
   SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
 
+  /// File path: assets/icons/plus.svg
+  SvgGenImage get plus => const SvgGenImage('assets/icons/plus.svg');
+
   /// List of all assets
   List<dynamic> get values =>
-      [account, apple, binoculars, building, frame, gmail, google, home];
+      [account, apple, binoculars, building, frame, gmail, google, home, plus];
 }
 
 class $AssetsImagesGen {
