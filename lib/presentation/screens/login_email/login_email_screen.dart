@@ -106,14 +106,14 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     BlocBuilder<LoginEmailCubit, LoginEmailState>(
-                        builder: (context, state) => AppLabelTextField(
+                        builder: (context, state) => CustomLabelTextField(
                               label: "UserName",
                               onChanged: (values) =>
                                   cubit.changeUserName(values),
                               errorMessage: state.errorUserName,
                             )),
                     BlocBuilder<LoginEmailCubit, LoginEmailState>(
-                      builder: (context, state) => AppLabelTextField(
+                      builder: (context, state) => CustomLabelTextField(
                         label: "Password",
                         onChanged: (values) => cubit.changePass(values),
                         obscureText: state.isShowPass,

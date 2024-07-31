@@ -104,7 +104,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     BlocBuilder<SignUpCubit, SignUpState>(
                       buildWhen: (previous, current) =>
                           previous.errorUserName != current.errorUserName,
-                      builder: (context, state) => AppLabelTextField(
+                      builder: (context, state) => CustomLabelTextField(
                         label: "UserName",
                         errorMessage: state.errorUserName,
                         onChanged: (values) => cubit.changeUserName(values),
@@ -114,7 +114,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       buildWhen: (previous, current) =>
                           previous.errorPassword != current.errorPassword ||
                           previous.showPass != current.showPass,
-                      builder: (context, state) => AppLabelTextField(
+                      builder: (context, state) => CustomLabelTextField(
                         label: "Password",
                         obscureText: !state.showPass,
                         errorMessage: state.errorPassword,
@@ -131,7 +131,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       buildWhen: (previous, current) =>
                           previous.errorConfirm != current.errorConfirm ||
                           previous.showConfirmPass != current.showConfirmPass,
-                      builder: (context, state) => AppLabelTextField(
+                      builder: (context, state) => CustomLabelTextField(
                         label: "Confirm Password",
                         obscureText: !state.showConfirmPass,
                         errorMessage: state.errorConfirm,

@@ -77,6 +77,8 @@ dependencies:
   device_info_plus: ^9.1.0
   animated_bottom_navigation_bar: ^1.3.3
   lottie: ^3.1.2
+  table_calendar: ^3.0.9
+  entry: ^1.0.0
 
 
   #image
@@ -90,7 +92,6 @@ dependencies:
   cloud_firestore: ^4.15.8
   google_sign_in: ^6.2.1
   firebase_auth: ^4.17.8
-
 
 
 
