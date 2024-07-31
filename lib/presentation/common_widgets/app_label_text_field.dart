@@ -5,7 +5,7 @@ import 'package:todo/application/constants/app_colors.dart';
 import 'package:todo/presentation/common_widgets/app_text.dart';
 
 class AppLabelTextField extends StatefulWidget {
-  final String label;
+  final String? label;
   final bool showLabel;
   final String defaultValue;
   final String? hintText;
@@ -22,7 +22,7 @@ class AppLabelTextField extends StatefulWidget {
 
   const AppLabelTextField({
     super.key,
-    required this.label,
+    this.label,
     this.showLabel = true,
     this.defaultValue = "",
     this.hintText,
@@ -68,7 +68,7 @@ class _AppLabelTextFieldState extends State<AppLabelTextField> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (widget.showLabel)
-            AppText(widget.label, fontSize: 14.sp, fontWeight: FontWeight.w400, color: AppColors.textPrimary),
+            AppText(widget.label!, fontSize: 14.sp, fontWeight: FontWeight.w400, color: AppColors.textPrimary),
           SizedBox(height: 8.h),
           TextFormField(
             textAlignVertical: TextAlignVertical.center,

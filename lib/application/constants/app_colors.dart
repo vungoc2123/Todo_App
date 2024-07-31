@@ -10,10 +10,11 @@ class AppColors {
   //color
   static const blueBold = Color(0xFF1a3666);
   static const grey1 = Color(0xFF344053);
-  static const yellow = Color(0xFFc9a865);
+  static const yellow = Color(0xFFFFAF33);
   static const red = Color(0xFFf04438);
   static const textPrimary = Color(0xFF101828);
   static const textTopic = Color(0xFF0d1e49);
   static const textSecond = Color(0xFF233e6c);
   static const gray = Color(0xFFE8E7EF);
+  static const green = Color(0xff2eaf21);
 }
