@@ -38,6 +38,13 @@ class $AssetsIconsGen {
   /// File path: assets/icons/building.svg
   SvgGenImage get building => const SvgGenImage('assets/icons/building.svg');
 
+  /// File path: assets/icons/eye-crossed.svg
+  SvgGenImage get eyeCrossed =>
+      const SvgGenImage('assets/icons/eye-crossed.svg');
+
+  /// File path: assets/icons/eye.svg
+  SvgGenImage get eye => const SvgGenImage('assets/icons/eye.svg');
+
   /// File path: assets/icons/frame.svg
   SvgGenImage get frame => const SvgGenImage('assets/icons/frame.svg');
 
@@ -54,8 +61,19 @@ class $AssetsIconsGen {
   SvgGenImage get plus => const SvgGenImage('assets/icons/plus.svg');
 
   /// List of all assets
-  List<dynamic> get values =>
-      [account, apple, binoculars, building, frame, gmail, google, home, plus];
+  List<dynamic> get values => [
+        account,
+        apple,
+        binoculars,
+        building,
+        eyeCrossed,
+        eye,
+        frame,
+        gmail,
+        google,
+        home,
+        plus
+      ];
 }
 
 class $AssetsImagesGen {
