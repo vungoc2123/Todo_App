@@ -4,15 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:todo/application/constants/app_colors.dart';
 import 'package:todo/application/constants/app_text_style.dart';
-import 'package:todo/application/extensions/date_time_extension.dart';
-import 'package:todo/domain/models/response/schedule/event.dart';
+import 'package:todo/domain/models/response/schedule/event_response.dart';
 import 'package:todo/gen/assets.gen.dart';
 import 'package:todo/presentation/common_widgets/app_bottom_sheet.dart';
 import 'package:todo/presentation/screens/create_edit_schedule/create_edit_schedule_screen.dart';
 import 'package:todo/presentation/screens/schedule/widgets/confirm_widget.dart';
 
 class DetailSchedule extends StatelessWidget {
-  final Event event;
+  final EventResponse event;
 
   const DetailSchedule({super.key, required this.event});
 
@@ -31,7 +30,7 @@ class DetailSchedule extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${tr("time")} ${event.start?.toFormattedString()} - ${event.end?.toFormattedString()}',
+                '${tr("time")} ${event.startTime} - ${event.endTime}',
                 style:
                 AppTextStyle.textBase.copyWith(fontWeight: FontWeight.w500),
               ),
