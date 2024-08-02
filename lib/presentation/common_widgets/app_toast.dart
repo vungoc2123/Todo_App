@@ -9,7 +9,7 @@ class AppToast {
   }
 
   static void showToastSuccess(BuildContext context, {required String title}) {
-    _showToast(context, title, Colors.greenAccent, Icons.check_circle_outline);
+    _showToast(context, title, Colors.green, Icons.check_circle_outline);
   }
 
   static void _showToast(BuildContext context, String title, Color color, IconData icon) {
@@ -44,7 +44,7 @@ class AppToast {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 2,
                     blurRadius: 2,
-                    offset: const Offset(1, 1),
+                    offset: const Offset(0.2, 0.5),
                   ),
                 ],
               ),

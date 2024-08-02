@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:todo/application/constants/app_text_style.dart';
-import 'package:todo/application/extensions/date_time_extension.dart';
-import 'package:todo/domain/models/response/schedule/event.dart';
+import 'package:todo/domain/models/response/schedule/event_response.dart';
 import 'package:todo/gen/assets.gen.dart';
 
 class ScheduleWidget extends StatelessWidget {
-  final Event event;
+  final EventResponse event;
 
   const ScheduleWidget({super.key, required this.event});
 
@@ -17,7 +16,7 @@ class ScheduleWidget extends StatelessWidget {
       padding: EdgeInsets.all(12.r),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.r),
-          border: Border.all(width: 0.5, color: Colors.blue),
+          // border: Border.all(width: 0.5, color: Colors.blue),
           color: event.status == true ? Colors.grey.withOpacity(0.3) : Colors.white),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +34,7 @@ class ScheduleWidget extends StatelessWidget {
                 width: 12.w,
               ),
               Text(
-                '${event.start?.toFormattedString()} - ${event.end?.toFormattedString()}',
+                '${event.startTime} - ${event.endTime}',
                 style: AppTextStyle.textSm.copyWith(color: Colors.black54),
               )
             ],

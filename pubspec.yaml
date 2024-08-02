@@ -92,6 +92,7 @@ dependencies:
   cloud_firestore: ^4.15.8
   google_sign_in: ^6.2.1
   firebase_auth: ^4.17.8
+  intl: ^0.18.1
 
 
 

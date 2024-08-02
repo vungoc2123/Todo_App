@@ -17,5 +17,11 @@
   "yes": "Đồng ý",
   "hour": "Giờ",
   "minutes" : "Phút",
-  "pickTime": "Chọn thời gian"
+  "pickTime": "Chọn thời gian",
+  "youHaveFreeDay": "Bạn có một ngày rảnh rỗi",
+  "error": "Có lỗi, hãy liên hệ với nhà phát triển",
+  "processSuccess" : "Xử lý thành công",
+  "processFailed" : "Xử lý thất bại",
+  "requiredInfo" :  "Tiêu đề và nội dung không được để trống",
+  "requiredTime": "Giờ kết thúc phải lớn hơn giờ bắt đầu"
 }
