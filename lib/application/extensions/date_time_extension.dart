@@ -14,6 +14,11 @@ extension DateTimeFormat on DateTime {
     final minute = this.minute.toString().padLeft(2, '0');
     return '$hour:$minute';
   }
+  String format2(){
+     // Lấy thời gian hiện tại
+    String formattedDate = DateFormat("yyyy-MM-dd HH:mm:ss.SSS'Z'").format(this.toUtc());
+    return formattedDate;
+  }
 }
 
 extension TimeOfDayFormat on TimeOfDay {
@@ -31,6 +36,10 @@ extension TimeOfDayFormat on TimeOfDay {
     }
     return false;
   }
+
+  int toMinute(){
+    return hour *60 + minute;
+  }
 }
 
 extension StringToDateTime on String{
@@ -44,6 +53,8 @@ extension StringToDateTime on String{
 
   DateTime toDateTime() {
     final DateFormat dateFormat = DateFormat('dd/MM/yyyy');
-    return dateFormat.parse(this);
+    DateTime date = dateFormat.parse(this).add(const Duration(hours: 7));
+    return date;
   }
+
 }

@@ -4,10 +4,19 @@ import 'package:todo/domain/models/response/schedule/event_response.dart';
 
 class CreateEditScheduleState extends Equatable {
   final LoadStatus loadStatus;
-  final EventResponse? eventResponse;
+  final EventResponse eventResponse;
 
   const CreateEditScheduleState(
-      {this.loadStatus = LoadStatus.initial, this.eventResponse});
+      {this.loadStatus = LoadStatus.initial,
+      this.eventResponse = const EventResponse(
+          uId: "",
+          title: "",
+          date: "",
+          startTime: "",
+          endTime: "",
+          content: "",
+          status: false,
+          idEvent: "")});
 
   CreateEditScheduleState copyWith(
       {LoadStatus? loadStatus, EventResponse? eventResponse}) {

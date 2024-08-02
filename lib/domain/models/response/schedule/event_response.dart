@@ -4,7 +4,7 @@ part 'event_response.g.dart';
 
 @JsonSerializable()
 class EventResponse {
-  final String? idEvent;
+  final String idEvent;
   final String uId;
   final String title;
   final String? content;
@@ -15,12 +15,12 @@ class EventResponse {
 
   const EventResponse(
       {this.idEvent = "",
-      required this.uId,
-      required this.title,
-      required this.date,
+      this.uId = "",
+      this.title = "",
+      this.date = "",
       this.content = "",
-      required this.startTime,
-      required this.endTime,
+      this.startTime = "",
+      this.endTime = "",
       this.status = false});
 
   EventResponse copyWith(

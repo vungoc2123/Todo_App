@@ -8,7 +8,8 @@ import 'package:todo/gen/assets.gen.dart';
 
 class SelectTime extends StatelessWidget {
   final TimeOfDay time;
-  const SelectTime({super.key,required this.time});
+
+  const SelectTime({super.key, required this.time});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class SelectTime extends StatelessWidget {
         padding: EdgeInsets.all(12.r),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.w),
-            border: Border.all(color: AppColors.stroke)),
+            border: Border.all(color: AppColors.grey)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -28,7 +29,10 @@ class SelectTime extends StatelessWidget {
             SizedBox(
               width: 12.w,
             ),
-            SvgPicture.asset(Assets.icons.iconClockThree.path)
+            SvgPicture.asset(
+              Assets.icons.iconClockThree.path,
+              colorFilter: const ColorFilter.mode(AppColors.grey, BlendMode.srcIn),
+            )
           ],
         ));
   }

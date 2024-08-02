@@ -16,7 +16,7 @@ class ScheduleWidget extends StatelessWidget {
       padding: EdgeInsets.all(12.r),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.r),
-          border: Border.all(width: 0.5, color: Colors.blue),
+          // border: Border.all(width: 0.5, color: Colors.blue),
           color: event.status == true ? Colors.grey.withOpacity(0.3) : Colors.white),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

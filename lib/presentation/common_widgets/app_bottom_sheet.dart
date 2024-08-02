@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppBottomSheet {
-  static Future<void> showBottomSheet(BuildContext context,
+  static Future<bool?> showBottomSheet(BuildContext context,
       {required Widget child}) async {
-    return showModalBottomSheet<void>(
+    return showModalBottomSheet<bool?>(
         context: context,
         isScrollControlled: true,
         builder: (BuildContext context) {

@@ -45,6 +45,9 @@ class ConfirmWidget extends StatelessWidget {
                 Flexible(
                     flex: 1,
                     child: AppButton(
+                      onPressed: (){
+                        onConfirm.call();
+                      },
                       title: tr("yes"),
                       color: AppColors.yellow,
                       radius: 12.r,
