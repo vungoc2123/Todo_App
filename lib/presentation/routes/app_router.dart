@@ -29,7 +29,7 @@ class AppRouter {
         break;
       case RouteName.loginEmail:
         routeWidget = BlocProvider(
-            create: (context) => LoginEmailCubit(),
+          create: (context) => LoginEmailCubit(),
             child: const LoginEmailScreen());
       case RouteName.signup:
         routeWidget = BlocProvider(
@@ -43,6 +43,12 @@ class AppRouter {
             event: arguments != null ? arguments as EventResponse : null,
           ),
         );
+      case RouteName.login:
+        routeWidget = BlocProvider(
+          create: (_) => LoginCubit(),
+          child: const LoginScreen(),
+        );
+        break;
       default:
         routeWidget = initialWidget;
         break;
