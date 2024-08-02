@@ -142,12 +142,25 @@ class $AssetsImagesGen {
   AssetGenImage get adjustment =>
       const AssetGenImage('assets/images/adjustment.png');
 
+  /// File path: assets/images/icon_app.png
+  AssetGenImage get iconApp =>
+      const AssetGenImage('assets/images/icon_app.png');
+
+  /// File path: assets/images/img_calendar.png
+  AssetGenImage get imgCalendar =>
+      const AssetGenImage('assets/images/img_calendar.png');
+
+  /// File path: assets/images/img_warning.png
+  AssetGenImage get imgWarning =>
+      const AssetGenImage('assets/images/img_warning.png');
+
   /// File path: assets/images/planning.png
   AssetGenImage get planning =>
       const AssetGenImage('assets/images/planning.png');
 
   /// List of all assets
-  List<dynamic> get values => [aGetKeep, adjustment, planning];
+  List<dynamic> get values =>
+      [aGetKeep, adjustment, iconApp, imgCalendar, imgWarning, planning];
 }
 
 class $AssetsTranslationsGen {

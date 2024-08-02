@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/gen/assets.gen.dart';
 import 'package:todo/presentation/screens/home_tab/widget/bottom_bar_widget.dart';
-import 'package:todo/presentation/screens/schedule/schedule_screen.dart';
-import 'package:todo/presentation/screens/utilities/bloc/utilities_cubit.dart';
-import 'package:todo/presentation/screens/utilities/utilities_screen.dart';
+
+import 'package:todo/presentation/screens/schedule/schedules_screen.dart';
+
+import '../schedule/schedule_cubit.dart';
+import '../utilities/bloc/utilities_cubit.dart';
+import '../utilities/utilities_screen.dart';
 
 class HomePageModel {
   final String name;
@@ -47,7 +50,9 @@ class _HomeTabState extends State<HomeTab> {
     HomePageModel(
       name: tr("schedule"),
       iconUrl: Assets.icons.building.path,
-      child: const ScheduleScreen(),
+      child: BlocProvider(
+          create: (context)=> SchedulesCubit(),
+          child: const ScheduleScreen()),
     ),
     HomePageModel(
       name: tr("explore"),

@@ -5,4 +5,5 @@ class RouteName {
   static const home = '/home';
   static const loginEmail = '/loginEmail';
   static const signup = '/signup';
+  static const createEditSchedule = '/createEditSchedule';
 }

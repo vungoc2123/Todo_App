@@ -17,7 +17,6 @@
   "yes": "Đồng ý",
   "hour": "Giờ",
   "minutes" : "Phút",
-  "pickTime": "Chọn thời gian",
   "utilities": "Tiện ích",
   "appearance": "Giao diện",
   "sound&notify": "Âm thanh & Thông báo",
@@ -34,5 +33,12 @@
   "donAccount": "Không có tài khoản? ",
   "signup": "Đăng ký",
   "loginSuccess": "Đăng nhập thành công",
-  "loginFail": "Đăng nhập thất bại"
+  "loginFail": "Đăng nhập thất bại",
+  "pickTime": "Chọn thời gian",
+  "youHaveFreeDay": "Bạn có một ngày rảnh rỗi",
+  "error": "Có lỗi, hãy liên hệ với nhà phát triển",
+  "processSuccess" : "Xử lý thành công",
+  "processFailed" : "Xử lý thất bại",
+  "requiredInfo" :  "Tiêu đề và nội dung không được để trống",
+  "requiredTime": "Giờ kết thúc phải lớn hơn giờ bắt đầu"
 }

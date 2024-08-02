@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 extension DateTimeFormat on DateTime {
@@ -12,6 +13,11 @@ extension DateTimeFormat on DateTime {
     final hour = this.hour.toString().padLeft(2, '0');
     final minute = this.minute.toString().padLeft(2, '0');
     return '$hour:$minute';
+  }
+  String format2(){
+     // Lấy thời gian hiện tại
+    String formattedDate = DateFormat("yyyy-MM-dd HH:mm:ss.SSS'Z'").format(this.toUtc());
+    return formattedDate;
   }
 }
 
@@ -30,4 +36,25 @@ extension TimeOfDayFormat on TimeOfDay {
     }
     return false;
   }
+
+  int toMinute(){
+    return hour *60 + minute;
+  }
+}
+
+extension StringToDateTime on String{
+
+  TimeOfDay toTimeOfDay() {
+    final parts = split(':');
+    final hour = int.parse(parts[0]);
+    final minute = int.parse(parts[1]);
+    return TimeOfDay(hour: hour, minute: minute);
+  }
+
+  DateTime toDateTime() {
+    final DateFormat dateFormat = DateFormat('dd/MM/yyyy');
+    DateTime date = dateFormat.parse(this).add(const Duration(hours: 7));
+    return date;
+  }
+
 }
