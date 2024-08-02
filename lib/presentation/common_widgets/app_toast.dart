@@ -12,7 +12,11 @@ class AppToast {
     _showToast(context, title, Colors.greenAccent, Icons.check_circle_outline);
   }
 
-  static void _showToast(BuildContext context, String title, Color color, IconData icon) {
+  static void showToastNotify(BuildContext context, {required String title}) {
+    _showToast(context, title, null, null);
+  }
+
+  static void _showToast(BuildContext context, String title, Color? color, IconData? icon) {
     final overlay = Overlay.of(context);
     OverlayEntry? entry;
     entry = OverlayEntry(
@@ -48,17 +52,19 @@ class AppToast {
                   ),
                 ],
               ),
-              child: Row(
+              child: icon != null ? Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Icon(
                     icon,
-                    color: color,
+                    color: color ?? AppColors.yellow,
                     size: 25.r,
                   ),
                   SizedBox(width: 16.w),
-                  AppText(title, fontSize: 14.sp, color: color)
+                  AppText(title, fontSize: 14.sp, color: color ?? AppColors.yellow)
                 ],
+              ) : Center(
+                child: AppText(title, fontSize: 14.sp, color: color ?? AppColors.yellow),
               ),
             ),
           ),

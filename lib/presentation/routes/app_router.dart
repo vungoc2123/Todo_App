@@ -33,6 +33,12 @@ class AppRouter {
           create: (_) => SignUpCubit(),
           child: const SignUpScreen(),
         );
+      case RouteName.login:
+        routeWidget = BlocProvider(
+          create: (_) => LoginCubit(),
+          child: const LoginScreen(),
+        );
+        break;
       default:
         routeWidget = initialWidget;
         break;

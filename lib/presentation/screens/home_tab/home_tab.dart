@@ -1,8 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/gen/assets.gen.dart';
 import 'package:todo/presentation/screens/home_tab/widget/bottom_bar_widget.dart';
 import 'package:todo/presentation/screens/schedule/schedule_screen.dart';
+import 'package:todo/presentation/screens/utilities/bloc/utilities_cubit.dart';
+import 'package:todo/presentation/screens/utilities/utilities_screen.dart';
 
 class HomePageModel {
   final String name;
@@ -54,7 +57,10 @@ class _HomeTabState extends State<HomeTab> {
     HomePageModel(
       name: tr("document"),
       iconUrl: Assets.icons.frame.path,
-      child: Container(),
+      child: BlocProvider(
+        create: (context) => UtilitiesCubit(),
+        child: const UtilitiesScreen(),
+      ),
     ),
   ];
 

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -85,13 +86,13 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                 Column(
                   children: [
                     Text(
-                      "Sign in",
+                      tr("signing"),
                       style: AppTextStyle.text3Xl.copyWith(
                           color: AppColors.textPrimary,
                           fontWeight: FontWeight.w700),
                     ),
                     Text(
-                      "Please login to your account",
+                      tr("subtitle login"),
                       style: AppTextStyle.textSm.copyWith(
                           color: AppColors.textPrimary,
                           fontWeight: FontWeight.w400),
@@ -107,14 +108,14 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                   children: [
                     BlocBuilder<LoginEmailCubit, LoginEmailState>(
                         builder: (context, state) => CustomLabelTextField(
-                              label: "UserName",
+                              label: tr("userName"),
                               onChanged: (values) =>
                                   cubit.changeUserName(values),
                               errorMessage: state.errorUserName,
                             )),
                     BlocBuilder<LoginEmailCubit, LoginEmailState>(
                       builder: (context, state) => CustomLabelTextField(
-                        label: "Password",
+                        label: tr("pass"),
                         onChanged: (values) => cubit.changePass(values),
                         obscureText: state.isShowPass,
                         errorMessage: state.errorPassword,
@@ -132,7 +133,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                     GestureDetector(
                         onTap: () => {},
                         child: Text(
-                          "Forgot Password",
+                          tr("forgotPass"),
                           style: AppTextStyle.textSm.copyWith(
                             color: AppColors.blueLink,
                           ),
@@ -158,7 +159,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                         borderRadius: BorderRadius.circular(8.r)),
                     child: Center(
                       child: Text(
-                        'Sign in',
+                        tr("signing"),
                         style: AppTextStyle.textLg.copyWith(
                             color: AppColors.white,
                             fontWeight: FontWeight.w600),
@@ -174,12 +175,12 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                   alignment: Alignment.bottomCenter,
                   child: RichText(
                     text: TextSpan(
-                      text: "Don't have account yet? ",
+                      text: tr("donAccount"),
                       style: AppTextStyle.textSm
                           .copyWith(color: AppColors.textPrimary),
                       children: <TextSpan>[
                         TextSpan(
-                          text: "Sign up",
+                          text: tr("signup"),
                           style: AppTextStyle.textSm
                               .copyWith(color: AppColors.blueLink),
                           recognizer: TapGestureRecognizer()
