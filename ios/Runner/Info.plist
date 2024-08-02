@@ -11,6 +11,7 @@
         <array>
           <!-- TODO Replace this value: -->
           <!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+          <!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
         <string>com.googleusercontent.apps.962712836791-je2dnqmv5qd94f6j0ov829dd3lk6aa64</string>
         </array>
       </dict>
@@ -18,7 +19,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Todo</string>
+	<string>ToDo</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

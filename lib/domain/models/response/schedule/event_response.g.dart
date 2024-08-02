@@ -9,12 +9,12 @@ part of 'event_response.dart';
 EventResponse _$EventResponseFromJson(Map<String, dynamic> json) =>
     EventResponse(
       idEvent: json['idEvent'] as String? ?? "",
-      uId: json['uId'] as String,
-      title: json['title'] as String,
-      date: json['date'] as String,
+      uId: json['uId'] as String? ?? "",
+      title: json['title'] as String? ?? "",
+      date: json['date'] as String? ?? "",
       content: json['content'] as String? ?? "",
-      startTime: json['startTime'] as String,
-      endTime: json['endTime'] as String,
+      startTime: json['startTime'] as String? ?? "",
+      endTime: json['endTime'] as String? ?? "",
       status: json['status'] as bool? ?? false,
     );
 
