@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/domain/models/response/schedule/event_response.dart';
+import 'package:todo/domain/models/arguments/list_task_arguments.dart';
 import 'package:todo/presentation/routes/route_name.dart';
 import 'package:todo/presentation/screens/create_edit_schedule/create_edit_schedule_cubit.dart';
 import 'package:todo/presentation/screens/create_edit_schedule/create_edit_schedule_screen.dart';
 import 'package:todo/presentation/screens/home_tab/home_tab.dart';
+import 'package:todo/presentation/screens/list_task/bloc/list_task_cubit.dart';
+import 'package:todo/presentation/screens/list_task/list_task_screen.dart';
 import 'package:todo/presentation/screens/login/cubit/login_cubit.dart';
 import 'package:todo/presentation/screens/login/login_screen.dart';
 import 'package:todo/presentation/screens/login_email/bloc/login_email_cubit.dart';
@@ -48,6 +51,11 @@ class AppRouter {
           create: (_) => LoginCubit(),
           child: const LoginScreen(),
         );
+        break;
+      case RouteName.listTask:
+        routeWidget = BlocProvider(
+            create: (context) => ListTaskCubit(),
+            child: ListTaskScreen(argument: arguments as ListTaskArguments,));
         break;
       default:
         routeWidget = initialWidget;

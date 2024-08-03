@@ -19,24 +19,22 @@ class BottomBarItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
-          height: 10.h,
-        ),
         SvgPicture.asset(item.iconUrl,
             width: isSelected ? 25.r : 23.r,
             height: isSelected ? 25.r : 23.r,
             colorFilter: ColorFilter.mode(
-                isSelected ? AppColors.textPrimary : AppColors.grey,
+                isSelected ? AppColors.blue : AppColors.grey,
                 BlendMode.srcIn)),
-        SizedBox(
-          height: 5.h,
-        ),
-        Text(
-          item.name,
-          style: AppTextStyle.textXs.copyWith(
-                  color: isSelected ? AppColors.textPrimary : AppColors.grey),
-        )
+        // SizedBox(
+        //   height: 5.h,
+        // ),
+        // Text(
+        //   item.name,
+        //   style: AppTextStyle.textXs.copyWith(
+        //           color: isSelected ? AppColors.textPrimary : AppColors.grey),
+        // )
       ],
     );
 

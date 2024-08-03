@@ -3,6 +3,10 @@ import 'package:injectable/injectable.dart';
 import 'package:todo/data/data_sources/storages/shared_preferences/shared_preferences_helper.dart';
 import 'package:todo/data/repositories/schedule/schedule_repository_impl.dart';
 import 'package:todo/domain/repositories/schedule/schedule_repository.dart';
+import 'package:todo/data/repositories/task_group_repository_impl.dart';
+import 'package:todo/data/repositories/task_repository_impl.dart';
+import 'package:todo/domain/repositories/task_group_repository.dart';
+import 'package:todo/domain/repositories/task_repository.dart';
 import 'di.config.dart';
 
 final getIt = GetIt.instance;
@@ -23,5 +27,10 @@ void configureDependencies() {
   //repository
   getIt.registerLazySingleton<ScheduleRepository>(
       () => ScheduleRepositoryImpl());
+  getIt.registerLazySingleton<TaskGroupRepository>(
+      () => TaskGroupRepositoryImpl());
+  getIt.registerLazySingleton<TaskRepository>(
+          () => TaskRepositoryImpl());
   //bloc
+
 }
