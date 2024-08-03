@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/gen/assets.gen.dart';
+import 'package:todo/presentation/screens/home/bloc/task_group_cubit.dart';
+import 'package:todo/presentation/screens/home/home_screen.dart';
 import 'package:todo/presentation/screens/home_tab/widget/bottom_bar_widget.dart';
-
 import 'package:todo/presentation/screens/schedule/schedules_screen.dart';
-
 import '../schedule/schedule_cubit.dart';
 import '../utilities/bloc/utilities_cubit.dart';
 import '../utilities/utilities_screen.dart';
@@ -44,24 +44,26 @@ class _HomeTabState extends State<HomeTab> {
   final List<HomePageModel> listPages = [
     HomePageModel(
       name: tr("home"),
-      iconUrl: Assets.icons.home.path,
-      child: Container(),
+      iconUrl: Assets.icons.checkbox.path,
+      child: BlocProvider(
+          create: (BuildContext context) => TaskGroupCubit(),
+          child: const HomeScreen()),
     ),
     HomePageModel(
       name: tr("schedule"),
-      iconUrl: Assets.icons.building.path,
+      iconUrl: Assets.icons.dailyCalendar.path,
       child: BlocProvider(
           create: (context)=> SchedulesCubit(),
           child: const ScheduleScreen()),
     ),
     HomePageModel(
       name: tr("explore"),
-      iconUrl: Assets.icons.binoculars.path,
+      iconUrl: Assets.icons.duration.path,
       child: Container(),
     ),
     HomePageModel(
       name: tr("document"),
-      iconUrl: Assets.icons.frame.path,
+      iconUrl: Assets.icons.settings.path,
       child: BlocProvider(
         create: (context) => UtilitiesCubit(),
         child: const UtilitiesScreen(),

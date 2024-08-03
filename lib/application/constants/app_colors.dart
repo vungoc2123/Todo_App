@@ -10,7 +10,8 @@ class AppColors {
   static const colorPrimary = Color(0xFF0abde3);
   static const grayF3 = Color(0xFFF9F9F9);
   static const grayD1 = Color(0xFFD1D1D1);
-
+  static const purple = Color(0xFF800080);
+  static const black = Color(0xFF2c2c2e);
   //color
   static const blueBold = Color(0xFF1a3666);
   static const blueLink = Color(0xFF54a0ff);
