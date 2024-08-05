@@ -15,21 +15,11 @@ import 'package:vector_graphics/vector_graphics.dart';
 class $AssetsAnimationIconGen {
   const $AssetsAnimationIconGen();
 
-  /// File path: assets/animation_icon/icon_animation_2.json
-  String get iconAnimation2 => 'assets/animation_icon/icon_animation_2.json';
-
-  /// File path: assets/animation_icon/icon_animation_3.json
-  String get iconAnimation3 => 'assets/animation_icon/icon_animation_3.json';
-
-  /// File path: assets/animation_icon/icon_animation_4.json
-  String get iconAnimation4 => 'assets/animation_icon/icon_animation_4.json';
-
   /// File path: assets/animation_icon/loading.json
   String get loading => 'assets/animation_icon/loading.json';
 
   /// List of all assets
-  List<String> get values =>
-      [iconAnimation2, iconAnimation3, iconAnimation4, loading];
+  List<String> get values => [loading];
 }
 
 class $AssetsIconsGen {
@@ -89,9 +79,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/icon_edit.svg
   SvgGenImage get iconEdit => const SvgGenImage('assets/icons/icon_edit.svg');
 
-  /// File path: assets/icons/icon_tick.svg
-  SvgGenImage get iconTick => const SvgGenImage('assets/icons/icon_tick.svg');
-
   /// File path: assets/icons/plus.svg
   SvgGenImage get plus => const SvgGenImage('assets/icons/plus.svg');
 
@@ -113,7 +100,6 @@ class $AssetsIconsGen {
         iconClose,
         iconDelete,
         iconEdit,
-        iconTick,
         plus
       ];
 }
@@ -123,10 +109,6 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/.getKeep
   String get aGetKeep => 'assets/images/.getKeep';
-
-  /// File path: assets/images/icon_app.png
-  AssetGenImage get iconApp =>
-      const AssetGenImage('assets/images/icon_app.png');
 
   /// File path: assets/images/img_calendar.png
   AssetGenImage get imgCalendar =>
@@ -141,8 +123,7 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/planning.png');
 
   /// List of all assets
-  List<dynamic> get values =>
-      [aGetKeep, iconApp, imgCalendar, imgWarning, planning];
+  List<dynamic> get values => [aGetKeep, imgCalendar, imgWarning, planning];
 }
 
 class $AssetsTranslationsGen {

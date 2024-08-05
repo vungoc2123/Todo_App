@@ -80,6 +80,10 @@ dependencies:
   table_calendar: ^3.0.9
   entry: ^1.0.0
   flutter_launcher_icons: ^0.13.1
+  fl_chart: ^0.68.0
+  percent_indicator: ^4.2.3
+  drag_and_drop_lists: ^0.4.1
+  flutter_slidable: ^3.1.1
   intl: ^0.18.1
   adaptive_theme: ^3.6.0
 
@@ -95,7 +99,6 @@ dependencies:
   cloud_firestore: ^4.15.8
   google_sign_in: ^6.2.1
   firebase_auth: ^4.17.8
-
 
 
 

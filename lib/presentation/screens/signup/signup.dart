@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,13 +82,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Column(
                   children: [
                     Text(
-                      "Sign up",
+                      tr("signup"),
                       style: AppTextStyle.text3Xl.copyWith(
                           color: AppColors.textPrimary,
                           fontWeight: FontWeight.w700),
                     ),
                     Text(
-                      "Please login to your account",
+                      tr("subtitle signup"),
                       style: AppTextStyle.textSm.copyWith(
                           color: AppColors.textPrimary,
                           fontWeight: FontWeight.w400),
@@ -105,7 +106,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       buildWhen: (previous, current) =>
                           previous.errorUserName != current.errorUserName,
                       builder: (context, state) => CustomLabelTextField(
-                        label: "UserName",
+                        label: tr("userName"),
                         errorMessage: state.errorUserName,
                         onChanged: (values) => cubit.changeUserName(values),
                       ),
@@ -115,7 +116,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           previous.errorPassword != current.errorPassword ||
                           previous.showPass != current.showPass,
                       builder: (context, state) => CustomLabelTextField(
-                        label: "Password",
+                        label: tr("pass"),
                         obscureText: !state.showPass,
                         errorMessage: state.errorPassword,
                         onChanged: (values) => cubit.changePassword(values),
@@ -132,7 +133,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           previous.errorConfirm != current.errorConfirm ||
                           previous.showConfirmPass != current.showConfirmPass,
                       builder: (context, state) => CustomLabelTextField(
-                        label: "Confirm Password",
+                        label: tr("confirmPass"),
                         obscureText: !state.showConfirmPass,
                         errorMessage: state.errorConfirm,
                         onChanged: (values) =>
@@ -166,7 +167,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           borderRadius: BorderRadius.circular(8.r)),
                       child: Center(
                         child: Text(
-                          'Sign up',
+                          tr("signup"),
                           style: AppTextStyle.textLg.copyWith(
                               color: AppColors.white,
                               fontWeight: FontWeight.w600),

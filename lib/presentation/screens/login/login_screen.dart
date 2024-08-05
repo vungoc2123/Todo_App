@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,32 +24,25 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   late final LoginCubit cubit;
-  Timer? _debounce;
-  
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     cubit = BlocProvider.of<LoginCubit>(context);
+    _checkLoginStatus();
+  }
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-
-      final User? user = FirebaseAuth.instance.currentUser;
-      user?.refreshToken;
-      if (user != null) {
-        showDialog(context: context, builder:(_) => const AppLoading());
-        if (_debounce?.isActive ?? false) _debounce!.cancel();
-        _debounce = Timer(const Duration(milliseconds: 1500), () {
-          AppToast.showToastSuccess(context, title: "login success");
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            RouteName.homeTab,
-            arguments: const HomeTabArguments(index: 0),
-            (route) => false,
-          );
-        });
+  Future<void> _checkLoginStatus() async {
+    if (await cubit.checkLogin()) {
+      if (mounted) {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          RouteName.homeTab,
+          arguments: const HomeTabArguments(index: 0),
+          (route) => false,
+        );
       }
-    });
+    }
   }
 
   @override
@@ -59,6 +51,9 @@ class _LoginScreenState extends State<LoginScreen> {
       body: BlocListener<LoginCubit, LoginState>(
         listener: (context, state) {
           if (state.status == LoadStatus.success) {
+            if (Navigator.canPop(context)) {
+              Navigator.pop(context);
+            }
             AppToast.showToastSuccess(context, title: state.messenger ?? '');
             Navigator.pushNamedAndRemoveUntil(
                 context,
@@ -67,8 +62,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 (route) => false);
           }
 
-          if(state.status == LoadStatus.failure){
+          if (state.status == LoadStatus.failure) {
+            if (Navigator.canPop(context)) {
+              Navigator.pop(context);
+            }
             AppToast.showToastError(context, title: state.messenger ?? '');
+          }
+          if (state.status == LoadStatus.loading) {
+            showDialog(
+              context: context,
+              builder: (context) => const AppLoading(),
+            );
           }
         },
         child: SafeArea(
@@ -97,16 +101,25 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     ButtonLoginWidget(
                       nameButton: tr("loginGoogle"),
-                      icon: Image.asset(Assets.icons.google.path, width: 20.w, height: 20.w,),
+                      icon: Image.asset(
+                        Assets.icons.google.path,
+                        width: 20.w,
+                        height: 20.w,
+                      ),
                       action: () => cubit.signInWithGoogle(),
                     ),
                     SizedBox(
                       height: 8.h,
                     ),
                     ButtonLoginWidget(
-                        nameButton: tr("loginEmail"),
-                        icon: Image.asset(Assets.icons.gmail.path, width: 20.w, height: 20.w,),
-                        action: ()=> Navigator.pushNamed(context, RouteName.loginEmail),
+                      nameButton: tr("loginEmail"),
+                      icon: Image.asset(
+                        Assets.icons.gmail.path,
+                        width: 20.w,
+                        height: 20.w,
+                      ),
+                      action: () =>
+                          Navigator.pushNamed(context, RouteName.loginEmail),
                     ),
                   ],
                 ),
