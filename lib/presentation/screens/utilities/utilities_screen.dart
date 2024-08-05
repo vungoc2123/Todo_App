@@ -1,5 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,6 +37,7 @@ class _UtilitiesScreenState extends State<UtilitiesScreen> {
   @override
   Widget build(BuildContext context) {
     final currentTheme = AdaptiveTheme.of(context).theme;
+    final locale = context.locale;
 
     return Scaffold(
       backgroundColor: AppColors.grayF3,
@@ -152,13 +154,27 @@ class _UtilitiesScreenState extends State<UtilitiesScreen> {
                                                 const Locale('en', 'US'));
                                             Navigator.of(context).pop();
                                           },
-                                          child: Text(
-                                            tr("english"),
-                                            style: AppTextStyle.textSm,
-                                          ),
+                                          child: Row(children: [
+                                            locale == const Locale('en', 'US')
+                                                ? Icon(
+                                                    Icons.done,
+                                                    color: currentTheme
+                                                        .primaryColor,
+                                                  )
+                                                : SizedBox(
+                                                    width: 16.w,
+                                                  ),
+                                            SizedBox(
+                                              width: 8.w,
+                                            ),
+                                            Text(
+                                              tr("english"),
+                                              style: AppTextStyle.textSm,
+                                            ),
+                                          ]),
                                         ),
                                       ),
-                                      Divider(
+                                      SizedBox(
                                         height: 20.h,
                                       ),
                                       SizedBox(
@@ -169,10 +185,24 @@ class _UtilitiesScreenState extends State<UtilitiesScreen> {
                                                 const Locale('vi', 'VN'));
                                             Navigator.of(context).pop();
                                           },
-                                          child: Text(
-                                            tr("vietnamese"),
-                                            style: AppTextStyle.textSm,
-                                          ),
+                                          child: Row(children: [
+                                            locale == const Locale('vi', 'VN')
+                                                ? Icon(
+                                                    Icons.done,
+                                                    color: currentTheme
+                                                        .primaryColor,
+                                                  )
+                                                : SizedBox(
+                                                    width: 16.w,
+                                                  ),
+                                            SizedBox(
+                                              width: 8.w,
+                                            ),
+                                            Text(
+                                              tr("vietnamese"),
+                                              style: AppTextStyle.textSm,
+                                            ),
+                                          ]),
                                         ),
                                       )
                                     ],
