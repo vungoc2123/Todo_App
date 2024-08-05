@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo/application/constants/app_colors.dart';
@@ -9,10 +10,12 @@ class AppFloatButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = AdaptiveTheme.of(context).theme;
+
     return FloatingActionButton(
       onPressed: onPress,
       shape: const CircleBorder(),
-      backgroundColor: AppColors.blue,
+      backgroundColor: currentTheme.primaryColor,
       child: Assets.icons.plus.svg(
           width: 20.r,
           height: 20.r,

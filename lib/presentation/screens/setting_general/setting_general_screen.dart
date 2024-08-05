@@ -8,8 +8,6 @@ import 'package:todo/application/constants/app_colors.dart';
 import 'package:todo/application/constants/app_icon_loading.dart';
 import 'package:todo/application/constants/app_text_style.dart';
 import 'package:todo/application/constants/app_theme.dart';
-import 'package:todo/application/utils/navigation_utils.dart';
-import 'package:todo/presentation/common_widgets/app_bottom_sheet.dart';
 import 'package:todo/presentation/screens/setting_general/widgets/icon_loading_widget.dart';
 import 'package:todo/presentation/screens/setting_general/widgets/theme_widget.dart';
 
@@ -33,12 +31,10 @@ class _SettingGeneralScreenState extends State<SettingGeneralScreen> {
   @override
   Widget build(BuildContext context) {
     final currentTheme = AdaptiveTheme.of(context).theme;
-    final locale = context.locale;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          tr("settingGeneral"),
+          tr("appearance"),
           style: AppTextStyle.textBase
               .copyWith(fontWeight: FontWeight.w600, color: AppColors.white),
         ),
@@ -46,104 +42,11 @@ class _SettingGeneralScreenState extends State<SettingGeneralScreen> {
         foregroundColor: AppColors.white,
         backgroundColor: currentTheme.primaryColor,
       ),
-      backgroundColor: AppColors.gray,
+      backgroundColor: AppColors.grayF3,
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.r),
         child: Column(
           children: [
-            Container(
-              padding: EdgeInsets.all(12.r),
-              decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(8.r)),
-              child: InkWell(
-                onTap: () {
-                  AppBottomSheet.showBottomSheet(context,
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 12.h,
-                          ),
-                          Text(
-                            tr("choseLanguage"),
-                            style: AppTextStyle.textBase
-                                .copyWith(fontWeight: FontWeight.w600),
-                          ),
-                          SizedBox(
-                            height: 12.h,
-                          ),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 16.w),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: InkWell(
-                                    onTap: () {
-                                      context
-                                          .setLocale(const Locale('en', 'US'));
-                                      // NavigatorUtils
-                                      //     .navigatorKey.currentContext!
-                                      //     .setLocale(const Locale('en', 'US'));
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text(
-                                      tr("english"),
-                                      style: AppTextStyle.textSm,
-                                    ),
-                                  ),
-                                ),
-                                Divider(
-                                  height: 20.h,
-                                ),
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: InkWell(
-                                    onTap: () {
-                                      context
-                                          .setLocale(const Locale('vi', 'VN'));
-                                      // NavigatorUtils
-                                      //     .navigatorKey.currentState!.context
-                                      //     .setLocale(const Locale('vi', 'VN'));
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text(
-                                      tr("vietnamese"),
-                                      style: AppTextStyle.textSm,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 32.h,
-                          ),
-                        ],
-                      ));
-                },
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        tr("language"),
-                        style: AppTextStyle.textBase
-                            .copyWith(fontWeight: FontWeight.w600),
-                      ),
-                      Text(
-                        locale.languageCode == 'en'
-                            ? tr("english")
-                            : tr("vietnamese"),
-                        style: AppTextStyle.textSm
-                            .copyWith(fontWeight: FontWeight.w200),
-                      ),
-                    ]),
-              ),
-            ),
-            SizedBox(
-              height: 16.h,
-            ),
             Container(
               padding: EdgeInsets.all(12.r),
               decoration: BoxDecoration(

@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
         light: ThemeConfig.currentTheme.themeData,
         dark: ThemeData.dark(useMaterial3: true),
         initial: AdaptiveThemeMode.light,
-        builder:(theme, darkTheme)=> MaterialApp(
+        builder: (theme, darkTheme) => MaterialApp(
           debugShowCheckedModeBanner: false,
           navigatorObservers: [NavigatorUtils.navigatorObserver],
           navigatorKey: NavigatorUtils.navigatorKey,
@@ -36,7 +36,8 @@ class _MyAppState extends State<MyApp> {
               AppUtils.dismissKeyboard();
             },
             child: MediaQuery(
-              data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
+              data: MediaQuery.of(context)
+                  .copyWith(textScaler: const TextScaler.linear(1.0)),
               child: child!,
             ),
           ),

@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,13 +55,18 @@ class _ListTaskScreenState extends State<ListTaskScreen> with RouteAware {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = AdaptiveTheme.of(context).theme;
+
     return Scaffold(
       backgroundColor: AppColors.gray,
       appBar: AppBar(
         title: Text(
           tr("listTask"),
-          style: AppTextStyle.textXl.copyWith(fontWeight: FontWeight.w600),
+          style: AppTextStyle.textBase
+              .copyWith(fontWeight: FontWeight.w600, color: AppColors.white),
         ),
+        backgroundColor: currentTheme.primaryColor,
+        foregroundColor: AppColors.white,
         centerTitle: true,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),

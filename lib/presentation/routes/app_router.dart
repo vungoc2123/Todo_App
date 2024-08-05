@@ -12,6 +12,7 @@ import 'package:todo/presentation/screens/login/cubit/login_cubit.dart';
 import 'package:todo/presentation/screens/login/login_screen.dart';
 import 'package:todo/presentation/screens/login_email/bloc/login_email_cubit.dart';
 import 'package:todo/presentation/screens/login_email/login_email_screen.dart';
+import 'package:todo/presentation/screens/setting_general/setting_general_screen.dart';
 import 'package:todo/presentation/screens/signup/bloc/signup_cubit.dart';
 import 'package:todo/presentation/screens/signup/signup.dart';
 

@@ -75,7 +75,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.gray,
+        backgroundColor: AppColors.grayF3,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -96,7 +96,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                           return ValueListenableBuilder<CalendarFormat>(
                             valueListenable: _formatNotifier,
                             builder: (context, value, _) {
-                              return _buildTableCalendar(value);
+                              return _buildTableCalendar(value,currentTheme.primaryColor);
                             },
                           );
                         },
@@ -264,7 +264,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
     );
   }
 
-  Widget _buildTableCalendar(CalendarFormat format) {
+  Widget _buildTableCalendar(CalendarFormat format,Color colorMarker) {
     return TableCalendar(
       firstDay: DateTime.utc(2010, 10, 16),
       lastDay: DateTime.utc(2030, 3, 14),
@@ -284,8 +284,8 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           color: Colors.lightBlue,
           shape: BoxShape.circle,
         ),
-        selectedDecoration: const BoxDecoration(
-          color: Colors.orange,
+        selectedDecoration:  BoxDecoration(
+          color: colorMarker,
           shape: BoxShape.circle,
         ),
         defaultTextStyle: AppTextStyle.textXs,
