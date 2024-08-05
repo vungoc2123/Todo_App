@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:todo/gen/assets.gen.dart';
+import 'package:todo/application/configs/icon_loading_config.dart';
 
 class AppLoading extends StatelessWidget {
   const AppLoading({super.key});
@@ -22,7 +22,7 @@ class AppLoading extends StatelessWidget {
             ),
           ],
         ),
-        child: Lottie.asset(Assets.animationIcon.loading,width: 70.r,height: 70.r),
+        child: Lottie.asset(IconLoadingConfig.currentIconLoading.path,width: 70.r,height: 70.r),
       ),
     );
   }

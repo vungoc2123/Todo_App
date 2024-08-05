@@ -13,11 +13,13 @@ class AppColors {
   static const blueBold = Color(0xFF1a3666);
   static const blueLink = Color(0xFF54a0ff);
   static const grey1 = Color(0xFF344053);
-  static const yellow = Color(0xFFFFAF33);
+  static const yellow = Color(0xffe7a71c);
   static const red = Color(0xFFf04438);
   static const textPrimary = Color(0xFF101828);
   static const textTopic = Color(0xFF0d1e49);
   static const textSecond = Color(0xFF233e6c);
   static const gray = Color(0xFFECEBF1);
   static const green = Color(0xff2eaf21);
+  static const greenA5 = Color(0xff1bbea5);
+  static const orange = Color(0xfff96809);
 }

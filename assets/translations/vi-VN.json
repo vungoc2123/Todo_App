@@ -23,5 +23,12 @@
   "processSuccess" : "Xử lý thành công",
   "processFailed" : "Xử lý thất bại",
   "requiredInfo" :  "Tiêu đề và nội dung không được để trống",
-  "requiredTime": "Giờ kết thúc phải lớn hơn giờ bắt đầu"
+  "requiredTime": "Giờ kết thúc phải lớn hơn giờ bắt đầu",
+  "settingGeneral" : "Cài đặt chung",
+  "theme" : "Chủ đề",
+  "loading": "Loading",
+  "language": "Ngôn ngữ",
+  "choseLanguage" : "Chọn ngôn ngữ",
+  "english" : "Tiếng Anh",
+  "vietnamese":"Tiếng Việt"
 }

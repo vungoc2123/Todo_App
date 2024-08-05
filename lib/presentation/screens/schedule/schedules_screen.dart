@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
@@ -70,6 +71,8 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = AdaptiveTheme.of(context).theme;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.gray,
@@ -151,7 +154,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                                 horizontal: 16.r, vertical: 4.r),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(4.r),
-                                color: Colors.lightBlue),
+                                color: currentTheme.primaryColor),
                             child: Text(
                               tr("add"),
                               style: AppTextStyle.textSm

@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,9 +56,11 @@ class _EditScheduleState extends State<EditSchedule> {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = AdaptiveTheme.of(context).theme;
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColors.colorPrimary,
+        backgroundColor: currentTheme.primaryColor,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -239,7 +242,7 @@ class _EditScheduleState extends State<EditSchedule> {
                     }
                   },
                   title: widget.event != null ? tr("editSchedule") : tr("add"),
-                  color: Colors.blue,
+                  color: currentTheme.primaryColor,
                   radius: 8.r,
                   height: 40.h,
                   textStyle:
