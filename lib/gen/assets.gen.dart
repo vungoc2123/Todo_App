@@ -15,11 +15,21 @@ import 'package:vector_graphics/vector_graphics.dart';
 class $AssetsAnimationIconGen {
   const $AssetsAnimationIconGen();
 
+  /// File path: assets/animation_icon/icon_animation_2.json
+  String get iconAnimation2 => 'assets/animation_icon/icon_animation_2.json';
+
+  /// File path: assets/animation_icon/icon_animation_3.json
+  String get iconAnimation3 => 'assets/animation_icon/icon_animation_3.json';
+
+  /// File path: assets/animation_icon/icon_animation_4.json
+  String get iconAnimation4 => 'assets/animation_icon/icon_animation_4.json';
+
   /// File path: assets/animation_icon/loading.json
   String get loading => 'assets/animation_icon/loading.json';
 
   /// List of all assets
-  List<String> get values => [loading];
+  List<String> get values =>
+      [iconAnimation2, iconAnimation3, iconAnimation4, loading];
 }
 
 class $AssetsIconsGen {
@@ -95,6 +105,13 @@ class $AssetsIconsGen {
   /// File path: assets/icons/icon_edit.svg
   SvgGenImage get iconEdit => const SvgGenImage('assets/icons/icon_edit.svg');
 
+  /// File path: assets/icons/icon_language.svg
+  SvgGenImage get iconLanguage =>
+      const SvgGenImage('assets/icons/icon_language.svg');
+
+  /// File path: assets/icons/icon_tick.svg
+  SvgGenImage get iconTick => const SvgGenImage('assets/icons/icon_tick.svg');
+
   /// File path: assets/icons/music-alt.svg
   SvgGenImage get musicAlt => const SvgGenImage('assets/icons/music-alt.svg');
 
@@ -143,6 +160,8 @@ class $AssetsIconsGen {
         iconClose,
         iconDelete,
         iconEdit,
+        iconLanguage,
+        iconTick,
         musicAlt,
         penCircle,
         plus,

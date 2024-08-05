@@ -60,5 +60,12 @@
   "priorityMedium": "Ưu tiên vừa",
   "priorityLow": "Ưu tiên thấp",
   "youHaveNotTaskGroup": "Bạn không có nhóm nhiệm vụ",
-  "youHaveNotTask": "Bạn không có nhiệm vụ"
+  "youHaveNotTask": "Bạn không có nhiệm vụ",
+  "settingGeneral" : "Cài đặt chung",
+  "theme" : "Chủ đề",
+  "loading": "Loading",
+  "language": "Ngôn ngữ",
+  "choseLanguage" : "Chọn ngôn ngữ",
+  "english" : "Tiếng Anh",
+  "vietnamese":"Tiếng Việt"
 }

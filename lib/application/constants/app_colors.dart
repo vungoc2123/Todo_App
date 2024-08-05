@@ -23,4 +23,6 @@ class AppColors {
   static const textSecond = Color(0xFF233e6c);
   static const gray = Color(0xFFECEBF1);
   static const green = Color(0xff2eaf21);
+  static const greenA5 = Color(0xff1bbea5);
+  static const orange = Color(0xfff96809);
 }

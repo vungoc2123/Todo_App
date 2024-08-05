@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +14,6 @@ import 'package:todo/presentation/common_widgets/app_toast.dart';
 import 'package:todo/presentation/routes/route_name.dart';
 import 'package:todo/presentation/screens/detail_schedule/detail_schedule_cubit.dart';
 import 'package:todo/presentation/screens/detail_schedule/detail_schedule_state.dart';
-import 'package:todo/presentation/screens/schedule/widgets/confirm_widget.dart';
 
 class DetailSchedule extends StatefulWidget {
   final EventResponse event;
@@ -35,6 +35,8 @@ class _DetailScheduleState extends State<DetailSchedule> {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = AdaptiveTheme.of(context).theme;
+
     return BlocListener<DetailScheduleCubit, DetailScheduleState>(
       listener: (context, state) {
         if (state.loadStatus == LoadStatus.success) {
@@ -146,7 +148,7 @@ class _DetailScheduleState extends State<DetailSchedule> {
             Text(
               widget.event.title,
               style: AppTextStyle.textBase
-                  .copyWith(fontWeight: FontWeight.bold, color: Colors.blue),
+                  .copyWith(fontWeight: FontWeight.bold, color: currentTheme.primaryColor),
             ),
             SizedBox(
               height: 12.h,
