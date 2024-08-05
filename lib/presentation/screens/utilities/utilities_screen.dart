@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo/application/constants/app_text_style.dart';
+import 'package:todo/domain/models/arguments/update_user_arguments.dart';
 import 'package:todo/gen/assets.gen.dart';
 import 'package:todo/presentation/common_widgets/app_network_image.dart';
 import 'package:todo/presentation/routes/route_name.dart';
@@ -12,6 +13,7 @@ import 'package:todo/presentation/screens/utilities/bloc/utilities_state.dart';
 import 'package:todo/presentation/screens/utilities/widget/item_widget.dart';
 
 import '../../../application/constants/app_colors.dart';
+import '../../../application/utils/navigation_utils.dart';
 
 class UtilitiesScreen extends StatefulWidget {
   const UtilitiesScreen({super.key});
@@ -20,7 +22,7 @@ class UtilitiesScreen extends StatefulWidget {
   State<UtilitiesScreen> createState() => _UtilitiesScreenState();
 }
 
-class _UtilitiesScreenState extends State<UtilitiesScreen> {
+class _UtilitiesScreenState extends State<UtilitiesScreen> with RouteAware {
   late UtilitiesCubit cubit;
 
   @override
@@ -28,6 +30,24 @@ class _UtilitiesScreenState extends State<UtilitiesScreen> {
     // TODO: implement initState
     super.initState();
     cubit = BlocProvider.of<UtilitiesCubit>(context);
+    cubit.getInfoUser();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    NavigatorUtils.navigatorObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    NavigatorUtils.navigatorObserver.unsubscribe(this);
+  }
+
+  @override
+  void didPopNext() {
+    super.didPopNext();
     cubit.getInfoUser();
   }
 
@@ -54,52 +74,51 @@ class _UtilitiesScreenState extends State<UtilitiesScreen> {
           child: Column(
             children: [
               BlocBuilder<UtilitiesCubit, UtilitiesState>(
-                buildWhen: (previous, current) => previous.email != current.email,
-                builder: (context, state) => Container(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
-                  decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(8.r)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            width: 1.sw / 6,
-                            height: 1.sw / 6,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(99.r),
-                                border: Border.all(
-                                    color: AppColors.colorPrimary, width: 1.5)),
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(99.r),
-                                child: AppNetworkImage(state.url)),
-                          ),
-                          SizedBox(width: 12.w),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                state.userName,
-                                style: AppTextStyle.textSm
-                                    .copyWith(fontWeight: FontWeight.w600),
+                builder: (context, state) => GestureDetector(
+                  onTap: () => Navigator.pushNamed(
+                      context, RouteName.updateUser,
+                      arguments: UserArguments(
+                          photoUrl: state.url,
+                          userName: state.userName,
+                          email: state.email)),
+                  child: Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
+                    decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(8.r)),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 1.sw / 6,
+                          height: 1.sw / 6,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(99.r),
+                              border: Border.all(
+                                  color: AppColors.colorPrimary, width: 1.5)),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(99.r),
+                              child: AppNetworkImage(state.url)),
+                        ),
+                        SizedBox(width: 12.w),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              state.userName,
+                              style: AppTextStyle.textSm
+                                  .copyWith(fontWeight: FontWeight.w600),
+                            ),
+                            Text(
+                              state.email,
+                              style: AppTextStyle.textXs.copyWith(
+                                fontWeight: FontWeight.w400,
                               ),
-                              Text(
-                                state.email,
-                                style: AppTextStyle.textXs.copyWith(
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                      Assets.icons.penCircle.svg(
-                          colorFilter: const ColorFilter.mode(
-                              AppColors.grayD1, BlendMode.srcIn)),
-                    ],
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

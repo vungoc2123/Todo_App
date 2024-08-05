@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo/domain/models/arguments/update_user_arguments.dart';
 import 'package:todo/domain/models/response/schedule/event_response.dart';
 import 'package:todo/presentation/routes/route_name.dart';
 import 'package:todo/presentation/screens/create_edit_schedule/create_edit_schedule_cubit.dart';
@@ -11,6 +12,8 @@ import 'package:todo/presentation/screens/login_email/bloc/login_email_cubit.dar
 import 'package:todo/presentation/screens/login_email/login_email_screen.dart';
 import 'package:todo/presentation/screens/signup/bloc/signup_cubit.dart';
 import 'package:todo/presentation/screens/signup/signup.dart';
+import 'package:todo/presentation/screens/update_user/bloc/update_user_cubit.dart';
+import 'package:todo/presentation/screens/update_user/update_user_screen.dart';
 
 class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
@@ -43,6 +46,14 @@ class AppRouter {
             event: arguments != null ? arguments as EventResponse : null,
           ),
         );
+      case RouteName.updateUser:
+        routeWidget = BlocProvider(
+          create: (_) => UpdateUserCubit(),
+          child: UpdateUserScreen(
+            argument: arguments as UserArguments,
+          ),
+        );
+        break;
       case RouteName.login:
         routeWidget = BlocProvider(
           create: (_) => LoginCubit(),

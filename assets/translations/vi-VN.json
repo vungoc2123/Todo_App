@@ -26,7 +26,7 @@
   "signing": "Đăng nhập",
   "subtitle login": "Hãy đăng nhập để tiếp tục",
   "subtitle signup": "Hãy đăng ký để tiếp tục",
-  "userName": "Email",
+  "email": "Email",
   "pass": "Mật Khẩu",
   "confirmPass": "Nhập Lại Mật Khẩu",
   "forgotPass": "Quên mật khẩu",
@@ -40,5 +40,9 @@
   "processSuccess" : "Xử lý thành công",
   "processFailed" : "Xử lý thất bại",
   "requiredInfo" :  "Tiêu đề và nội dung không được để trống",
-  "requiredTime": "Giờ kết thúc phải lớn hơn giờ bắt đầu"
+  "requiredTime": "Giờ kết thúc phải lớn hơn giờ bắt đầu",
+  "updateUser": "Cập Nhật Tài Khoản",
+  "account": "Tài Khoản",
+  "userName": "Tên Người Dùng",
+  "save": "Lưu"
 }

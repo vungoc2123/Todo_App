@@ -42,6 +42,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/building.svg
   SvgGenImage get building => const SvgGenImage('assets/icons/building.svg');
 
+  /// File path: assets/icons/camera.svg
+  SvgGenImage get camera => const SvgGenImage('assets/icons/camera.svg');
+
   /// File path: assets/icons/clock-three.svg
   SvgGenImage get clockThree =>
       const SvgGenImage('assets/icons/clock-three.svg');
@@ -97,6 +100,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/pen-circle.svg
   SvgGenImage get penCircle => const SvgGenImage('assets/icons/pen-circle.svg');
 
+  /// File path: assets/icons/picture.svg
+  SvgGenImage get picture => const SvgGenImage('assets/icons/picture.svg');
+
   /// File path: assets/icons/plus.svg
   SvgGenImage get plus => const SvgGenImage('assets/icons/plus.svg');
 
@@ -111,6 +117,7 @@ class $AssetsIconsGen {
         apple,
         binoculars,
         building,
+        camera,
         clockThree,
         customizeComputer,
         eyeCrossed,
@@ -127,6 +134,7 @@ class $AssetsIconsGen {
         iconEdit,
         musicAlt,
         penCircle,
+        picture,
         plus,
         signOutAlt
       ];
