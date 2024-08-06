@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:todo/application/constants/app_colors.dart';
+import 'package:todo/application/constants/app_task-group.dart';
 import 'package:todo/application/constants/app_text_style.dart';
 import 'package:todo/application/enums/load_status.dart';
 import 'package:todo/application/extensions/color_extension.dart';
@@ -30,7 +31,7 @@ class _AddTaskGroupState extends State<AddTaskGroup> {
   void initState() {
     super.initState();
     cubit = BlocProvider.of<TaskGroupCubit>(context);
-    cubit.change(icon: listIcon[0], color: listColor[0].colorToHexWithAlpha());
+    cubit.change(icon: AppTaskGroup.listIcon[0], color: AppTaskGroup.listColor[0].colorToHexWithAlpha());
   }
 
   @override
@@ -138,21 +139,21 @@ class _AddTaskGroupState extends State<AddTaskGroup> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ...List.generate(
-                listColor.length,
+                AppTaskGroup.listColor.length,
                 (index) => InkWell(
                       onTap: () {
                         cubit.change(
-                            color: listColor[index].colorToHexWithAlpha());
+                            color: AppTaskGroup.listColor[index].colorToHexWithAlpha());
                       },
                       child: Container(
                           width: 30.r,
                           height: 30.r,
                           padding: EdgeInsets.all(8.r),
                           decoration: BoxDecoration(
-                            color: listColor[index],
+                            color: AppTaskGroup.listColor[index],
                             borderRadius: BorderRadius.circular(15.r),
                           ),
-                          child: listColor[index].colorToHexWithAlpha() == color
+                          child: AppTaskGroup.listColor[index].colorToHexWithAlpha() == color
                               ? Assets.icons.check.svg(
                                   colorFilter: const ColorFilter.mode(
                                       AppColors.white, BlendMode.srcIn))
@@ -170,18 +171,18 @@ class _AddTaskGroupState extends State<AddTaskGroup> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ...List.generate(
-                listIcon.length,
+                AppTaskGroup.listIcon.length,
                 (index) => InkWell(
                       onTap: () {
-                        cubit.change(icon: listIcon[index]);
+                        cubit.change(icon: AppTaskGroup.listIcon[index]);
                       },
                       child: SizedBox(
                           width: 25.r,
                           height: 25.r,
                           child: SvgPicture.asset(
-                            listIcon[index],
+                            AppTaskGroup.listIcon[index],
                             colorFilter: ColorFilter.mode(
-                                listIcon[index] == icon
+                                AppTaskGroup.listIcon[index] == icon
                                     ? color
                                     : AppColors.grey,
                                 BlendMode.srcIn),

@@ -20,7 +20,7 @@ class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
     Widget initialWidget = BlocProvider(
       create: (_) => LoginCubit(),
-      child: const LoginScreen(),
+      child: const HomeTab(arguments: HomeTabArguments(index: 0)),
     );
     Widget routeWidget = initialWidget;
     final arguments = routeSettings.arguments;

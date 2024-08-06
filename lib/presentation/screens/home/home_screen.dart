@@ -98,7 +98,11 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Assets.images.teamWork.image(),
+                            Assets.images.teamWork
+                                .image(width: 100.r, height: 100.r),
+                            SizedBox(
+                              height: 8.h,
+                            ),
                             Text(
                               tr('youHaveNotTaskGroup'),
                               style: AppTextStyle.textBase,
@@ -119,64 +123,66 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
                       ),
                     );
                   }
-                  return ListView.separated(
-                    itemCount: state.taskGroups.length,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (BuildContext context, int index) {
-                      return ClipRRect(
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(16.r))),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                  RouteName.listTask,
-                                  arguments: ListTaskArguments(
-                                      id: state.taskGroups[index].id));
-                            },
-                            child: Slidable(
-                                key: UniqueKey(),
-                                endActionPane: ActionPane(
-                                  extentRatio: 0.4,
-                                  motion: const ScrollMotion(),
-                                  dismissible: DismissiblePane(onDismissed: () {
-                                    cubit.deleteTaskGroup(
-                                        state.taskGroups[index].id);
-                                  }),
-                                  children: [
-                                    SlidableAction(
-                                      onPressed: (context) {
-                                        handleUpdate(index);
-                                      },
-                                      autoClose: false,
-                                      backgroundColor: AppColors.yellow,
-                                      foregroundColor: Colors.white,
-                                      icon: Icons.edit,
-                                    ),
-                                    SlidableAction(
-                                      onPressed: (context) {
-                                        cubit.deleteTaskGroup(
-                                            state.taskGroups[index].id);
-                                      },
-                                      backgroundColor: AppColors.pinkSubText,
-                                      foregroundColor: Colors.white,
-                                      icon: Icons.delete,
-                                    ),
-                                  ],
-                                ),
-                                child: ItemTaskGroup(
-                                    itemTaskGroupModel:
-                                        state.taskGroups[index])),
+                  return SingleChildScrollView(
+                    child: ListView.separated(
+                      itemCount: state.taskGroups.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (BuildContext context, int index) {
+                        return ClipRRect(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: AppColors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(16.r))),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                    RouteName.listTask,
+                                    arguments: ListTaskArguments(
+                                        id: state.taskGroups[index].id));
+                              },
+                              child: Slidable(
+                                  key: UniqueKey(),
+                                  endActionPane: ActionPane(
+                                    extentRatio: 0.4,
+                                    motion: const ScrollMotion(),
+                                    dismissible: DismissiblePane(onDismissed: () {
+                                      cubit.deleteTaskGroup(
+                                          state.taskGroups[index].id);
+                                    }),
+                                    children: [
+                                      SlidableAction(
+                                        onPressed: (context) {
+                                          handleUpdate(index);
+                                        },
+                                        autoClose: false,
+                                        backgroundColor: AppColors.yellow,
+                                        foregroundColor: Colors.white,
+                                        icon: Icons.edit,
+                                      ),
+                                      SlidableAction(
+                                        onPressed: (context) {
+                                          cubit.deleteTaskGroup(
+                                              state.taskGroups[index].id);
+                                        },
+                                        backgroundColor: AppColors.pinkSubText,
+                                        foregroundColor: Colors.white,
+                                        icon: Icons.delete,
+                                      ),
+                                    ],
+                                  ),
+                                  child: ItemTaskGroup(
+                                      itemTaskGroupModel:
+                                          state.taskGroups[index])),
+                            ),
                           ),
-                        ),
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) =>
-                        SizedBox(
-                      height: 16.h,
+                        );
+                      },
+                      separatorBuilder: (BuildContext context, int index) =>
+                          SizedBox(
+                        height: 16.h,
+                      ),
                     ),
                   );
                 },

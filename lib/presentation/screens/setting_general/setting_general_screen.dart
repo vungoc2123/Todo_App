@@ -2,8 +2,10 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:todo/application/configs/animation_focus_config.dart';
 import 'package:todo/application/configs/icon_loading_config.dart';
 import 'package:todo/application/configs/theme_config.dart';
+import 'package:todo/application/constants/app_animation.dart';
 import 'package:todo/application/constants/app_colors.dart';
 import 'package:todo/application/constants/app_icon_loading.dart';
 import 'package:todo/application/constants/app_text_style.dart';
@@ -20,12 +22,15 @@ class SettingGeneralScreen extends StatefulWidget {
 
 class _SettingGeneralScreenState extends State<SettingGeneralScreen> {
   late ValueNotifier<AppIconLoadingModel> iconLoading;
+  late ValueNotifier<String> animationFocus;
 
   @override
   void initState() {
     super.initState();
     iconLoading = ValueNotifier<AppIconLoadingModel>(
         IconLoadingConfig.currentIconLoading);
+    animationFocus =
+        ValueNotifier<String>(AnimationFocusConfig.currentAnimationPath);
   }
 
   @override
@@ -126,6 +131,53 @@ class _SettingGeneralScreenState extends State<SettingGeneralScreen> {
                                         isChosen: iconLoading.value.title ==
                                             MyAppIconLoading
                                                 .appIconLoadings[index].title),
+                                  )),
+                        );
+                      },
+                    ),
+                  ]),
+            ),
+            SizedBox(
+              height: 16.h,
+            ),
+            Container(
+              padding: EdgeInsets.all(12.r),
+              decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(8.r)),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.only(bottom: 8.h),
+                        child: Text(
+                          tr("focusAnimation"),
+                          style: AppTextStyle.textBase
+                              .copyWith(fontWeight: FontWeight.w600),
+                        )),
+                    ValueListenableBuilder(
+                      valueListenable: animationFocus,
+                      builder: (context, value, _) {
+                        return Wrap(
+                          spacing: 12.r,
+                          runSpacing: 12.r,
+                          children: List.generate(
+                              AppAnimations.animations.length,
+                              (index) => InkWell(
+                                    onTap: () async {
+                                      animationFocus.value =
+                                          AppAnimations.animations[index];
+                                      await AnimationFocusConfig
+                                          .setCurrentIconLoading(
+                                              AppAnimations.animations[index]);
+                                      await AnimationFocusConfig
+                                          .getCurrentAnimation();
+                                    },
+                                    child: IconLoadingWidget(
+                                        pathIcon:
+                                            AppAnimations.animations[index],
+                                        isChosen: animationFocus.value ==
+                                            AppAnimations.animations[index]),
                                   )),
                         );
                       },

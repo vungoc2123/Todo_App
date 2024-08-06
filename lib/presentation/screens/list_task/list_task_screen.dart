@@ -96,20 +96,19 @@ class _ListTaskScreenState extends State<ListTaskScreen> with RouteAware {
           if (state.listTask.isEmpty &&
               state.listTaskCompleted.isEmpty &&
               state.status != LoadStatus.initial) {
-            return Expanded(
-              child: SizedBox(
-                width: 1.sw,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Assets.images.task.image(),
-                    Text(
-                      tr('youHaveNotTask'),
-                      style: AppTextStyle.textBase,
-                    )
-                  ],
-                ),
+            return SizedBox(
+              width: 1.sw,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Assets.images.task.image(width: 100.r, height: 100.r),
+                  SizedBox(height: 8.h,),
+                  Text(
+                    tr('youHaveNotTask'),
+                    style: AppTextStyle.textBase,
+                  )
+                ],
               ),
             );
           }

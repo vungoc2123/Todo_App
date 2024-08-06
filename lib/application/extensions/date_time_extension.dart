@@ -14,10 +14,18 @@ extension DateTimeFormat on DateTime {
     final minute = this.minute.toString().padLeft(2, '0');
     return '$hour:$minute';
   }
-  String format2(){
-     // Lấy thời gian hiện tại
-    String formattedDate = DateFormat("yyyy-MM-dd HH:mm:ss.SSS'Z'").format(this.toUtc());
+
+  String format2() {
+    // Lấy thời gian hiện tại
+    String formattedDate =
+        DateFormat("yyyy-MM-dd HH:mm:ss.SSS'Z'").format(toUtc());
     return formattedDate;
+  }
+
+  int getTotalMinutes() {
+    int hours = hour;
+    int minutes = minute;
+    return (hours * 60 * 60) + (minutes * 60);
   }
 }
 
@@ -28,22 +36,21 @@ extension TimeOfDayFormat on TimeOfDay {
     return '$hour:$minute';
   }
 
-  bool isStartTimeBeforeEndTime(TimeOfDay endTime){
-    if(hour < endTime.hour){
+  bool isStartTimeBeforeEndTime(TimeOfDay endTime) {
+    if (hour < endTime.hour) {
       return true;
-    }else if(hour == endTime.hour && minute < endTime.minute ){
+    } else if (hour == endTime.hour && minute < endTime.minute) {
       return true;
     }
     return false;
   }
 
-  int toMinute(){
-    return hour *60 + minute;
+  int toMinute() {
+    return hour * 60 + minute;
   }
 }
 
-extension StringToDateTime on String{
-
+extension StringToDateTime on String {
   TimeOfDay toTimeOfDay() {
     final parts = split(':');
     final hour = int.parse(parts[0]);
@@ -56,5 +63,4 @@ extension StringToDateTime on String{
     DateTime date = dateFormat.parse(this).add(const Duration(hours: 7));
     return date;
   }
-
 }
