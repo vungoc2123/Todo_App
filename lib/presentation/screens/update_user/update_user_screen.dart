@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -43,13 +44,14 @@ class _UpdateUserScreenState extends State<UpdateUserScreen>{
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = AdaptiveTheme.of(context).theme;
     return Scaffold(
       appBar: AppBar(
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: AppColors.colorPrimary,
+        systemOverlayStyle:  SystemUiOverlayStyle(
+          statusBarColor: currentTheme.primaryColor,
           statusBarIconBrightness: Brightness.light,
         ),
-        backgroundColor: AppColors.colorPrimary,
+        backgroundColor: currentTheme.primaryColor,
         title: Text(
           tr("updateUser"),
           style: AppTextStyle.textXl
@@ -107,7 +109,7 @@ class _UpdateUserScreenState extends State<UpdateUserScreen>{
                           child: Container(
                             padding: EdgeInsets.all(4.r),
                             decoration: BoxDecoration(
-                                color: AppColors.colorPrimary,
+                                color: currentTheme.primaryColor,
                                 borderRadius: BorderRadius.circular(99.r)),
                             child: Assets.icons.camera.svg(
                                 width: 20,
@@ -154,7 +156,7 @@ class _UpdateUserScreenState extends State<UpdateUserScreen>{
               ),
               AppButton(
                 title: tr("save"),
-                color: AppColors.colorPrimary,
+                color: currentTheme.primaryColor,
                 textStyle: AppTextStyle.textBase.copyWith(
                   color: AppColors.white,
                 ),

@@ -15,9 +15,6 @@ import 'package:vector_graphics/vector_graphics.dart';
 class $AssetsAnimationIconGen {
   const $AssetsAnimationIconGen();
 
-  /// File path: assets/animation_icon/Animation.json
-  String get animation => 'assets/animation_icon/Animation.json';
-
   /// File path: assets/animation_icon/Animation1.json
   String get animation1 => 'assets/animation_icon/Animation1.json';
 
@@ -41,7 +38,6 @@ class $AssetsAnimationIconGen {
 
   /// List of all assets
   List<String> get values => [
-        animation,
         animation1,
         iconAnimation2,
         iconAnimation3,
