@@ -15,18 +15,45 @@ import 'package:vector_graphics/vector_graphics.dart';
 class $AssetsAnimationIconGen {
   const $AssetsAnimationIconGen();
 
+  /// File path: assets/animation_icon/Animation.json
+  String get animation => 'assets/animation_icon/Animation.json';
+
+  /// File path: assets/animation_icon/Animation1.json
+  String get animation1 => 'assets/animation_icon/Animation1.json';
+
+  /// File path: assets/animation_icon/icon_animation_2.json
+  String get iconAnimation2 => 'assets/animation_icon/icon_animation_2.json';
+
+  /// File path: assets/animation_icon/icon_animation_3.json
+  String get iconAnimation3 => 'assets/animation_icon/icon_animation_3.json';
+
+  /// File path: assets/animation_icon/icon_animation_4.json
+  String get iconAnimation4 => 'assets/animation_icon/icon_animation_4.json';
+
   /// File path: assets/animation_icon/loading.json
   String get loading => 'assets/animation_icon/loading.json';
 
+  /// File path: assets/animation_icon/work_hai.json
+  String get workHai => 'assets/animation_icon/work_hai.json';
+
+  /// File path: assets/animation_icon/working.json
+  String get working => 'assets/animation_icon/working.json';
+
   /// List of all assets
-  List<String> get values => [loading];
+  List<String> get values => [
+        animation,
+        animation1,
+        iconAnimation2,
+        iconAnimation3,
+        iconAnimation4,
+        loading,
+        workHai,
+        working
+      ];
 }
 
 class $AssetsIconsGen {
   const $AssetsIconsGen();
-
-  /// File path: assets/icons/account.svg
-  SvgGenImage get account => const SvgGenImage('assets/icons/account.svg');
 
   /// File path: assets/icons/angle-small-right.svg
   SvgGenImage get angleSmallRight =>
@@ -35,15 +62,21 @@ class $AssetsIconsGen {
   /// File path: assets/icons/apple.svg
   SvgGenImage get apple => const SvgGenImage('assets/icons/apple.svg');
 
-  /// File path: assets/icons/binoculars.svg
-  SvgGenImage get binoculars =>
-      const SvgGenImage('assets/icons/binoculars.svg');
+  /// File path: assets/icons/book-open-cover.svg
+  SvgGenImage get bookOpenCover =>
+      const SvgGenImage('assets/icons/book-open-cover.svg');
 
-  /// File path: assets/icons/building.svg
-  SvgGenImage get building => const SvgGenImage('assets/icons/building.svg');
+  /// File path: assets/icons/briefcase.svg
+  SvgGenImage get briefcase => const SvgGenImage('assets/icons/briefcase.svg');
 
   /// File path: assets/icons/camera.svg
   SvgGenImage get camera => const SvgGenImage('assets/icons/camera.svg');
+
+  /// File path: assets/icons/check.svg
+  SvgGenImage get check => const SvgGenImage('assets/icons/check.svg');
+
+  /// File path: assets/icons/checkbox.svg
+  SvgGenImage get checkbox => const SvgGenImage('assets/icons/checkbox.svg');
 
   /// File path: assets/icons/clock-three.svg
   SvgGenImage get clockThree =>
@@ -53,6 +86,13 @@ class $AssetsIconsGen {
   SvgGenImage get customizeComputer =>
       const SvgGenImage('assets/icons/customize-computer.svg');
 
+  /// File path: assets/icons/daily-calendar.svg
+  SvgGenImage get dailyCalendar =>
+      const SvgGenImage('assets/icons/daily-calendar.svg');
+
+  /// File path: assets/icons/duration.svg
+  SvgGenImage get duration => const SvgGenImage('assets/icons/duration.svg');
+
   /// File path: assets/icons/eye-crossed.svg
   SvgGenImage get eyeCrossed =>
       const SvgGenImage('assets/icons/eye-crossed.svg');
@@ -60,17 +100,11 @@ class $AssetsIconsGen {
   /// File path: assets/icons/eye.svg
   SvgGenImage get eye => const SvgGenImage('assets/icons/eye.svg');
 
-  /// File path: assets/icons/frame.svg
-  SvgGenImage get frame => const SvgGenImage('assets/icons/frame.svg');
-
   /// File path: assets/icons/gmail.png
   AssetGenImage get gmail => const AssetGenImage('assets/icons/gmail.png');
 
   /// File path: assets/icons/google.png
   AssetGenImage get google => const AssetGenImage('assets/icons/google.png');
-
-  /// File path: assets/icons/home.svg
-  SvgGenImage get home => const SvgGenImage('assets/icons/home.svg');
 
   /// File path: assets/icons/icon_calendar.svg
   SvgGenImage get iconCalendar =>
@@ -94,6 +128,13 @@ class $AssetsIconsGen {
   /// File path: assets/icons/icon_edit.svg
   SvgGenImage get iconEdit => const SvgGenImage('assets/icons/icon_edit.svg');
 
+  /// File path: assets/icons/icon_language.svg
+  SvgGenImage get iconLanguage =>
+      const SvgGenImage('assets/icons/icon_language.svg');
+
+  /// File path: assets/icons/icon_tick.svg
+  SvgGenImage get iconTick => const SvgGenImage('assets/icons/icon_tick.svg');
+
   /// File path: assets/icons/music-alt.svg
   SvgGenImage get musicAlt => const SvgGenImage('assets/icons/music-alt.svg');
 
@@ -106,37 +147,57 @@ class $AssetsIconsGen {
   /// File path: assets/icons/plus.svg
   SvgGenImage get plus => const SvgGenImage('assets/icons/plus.svg');
 
+  /// File path: assets/icons/puzzle-pieces.svg
+  SvgGenImage get puzzlePieces =>
+      const SvgGenImage('assets/icons/puzzle-pieces.svg');
+
+  /// File path: assets/icons/settings.svg
+  SvgGenImage get settings => const SvgGenImage('assets/icons/settings.svg');
+
   /// File path: assets/icons/sign-out-alt.svg
   SvgGenImage get signOutAlt =>
       const SvgGenImage('assets/icons/sign-out-alt.svg');
 
+  /// File path: assets/icons/user-chef.svg
+  SvgGenImage get userChef => const SvgGenImage('assets/icons/user-chef.svg');
+
+  /// File path: assets/icons/walking.svg
+  SvgGenImage get walking => const SvgGenImage('assets/icons/walking.svg');
+
   /// List of all assets
   List<dynamic> get values => [
-        account,
         angleSmallRight,
         apple,
-        binoculars,
-        building,
+        bookOpenCover,
+        briefcase,
         camera,
+        check,
+        checkbox,
         clockThree,
         customizeComputer,
+        dailyCalendar,
+        duration,
         eyeCrossed,
         eye,
-        frame,
         gmail,
         google,
-        home,
         iconCalendar,
         iconCheckbox,
         iconClockThree,
         iconClose,
         iconDelete,
         iconEdit,
+        iconLanguage,
+        iconTick,
         musicAlt,
         penCircle,
         picture,
         plus,
-        signOutAlt
+        puzzlePieces,
+        settings,
+        signOutAlt,
+        userChef,
+        walking
       ];
 }
 
@@ -166,9 +227,24 @@ class $AssetsImagesGen {
   AssetGenImage get planning =>
       const AssetGenImage('assets/images/planning.png');
 
+  /// File path: assets/images/task.png
+  AssetGenImage get task => const AssetGenImage('assets/images/task.png');
+
+  /// File path: assets/images/team-work.png
+  AssetGenImage get teamWork =>
+      const AssetGenImage('assets/images/team-work.png');
+
   /// List of all assets
-  List<dynamic> get values =>
-      [aGetKeep, adjustment, iconApp, imgCalendar, imgWarning, planning];
+  List<dynamic> get values => [
+        aGetKeep,
+        adjustment,
+        iconApp,
+        imgCalendar,
+        imgWarning,
+        planning,
+        task,
+        teamWork
+      ];
 }
 
 class $AssetsTranslationsGen {

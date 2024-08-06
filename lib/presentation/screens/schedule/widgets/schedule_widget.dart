@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,12 +13,15 @@ class ScheduleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = AdaptiveTheme.of(context).theme;
     return Container(
       padding: EdgeInsets.all(12.r),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.r),
           // border: Border.all(width: 0.5, color: Colors.blue),
-          color: event.status == true ? Colors.grey.withOpacity(0.3) : Colors.white),
+          color: event.status == true
+              ? currentTheme.primaryColor.withOpacity(0.2)
+              : Colors.white),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

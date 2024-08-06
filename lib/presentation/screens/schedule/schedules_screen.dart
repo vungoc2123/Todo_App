@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:entry/entry.dart';
 import 'package:flutter/material.dart';
@@ -70,9 +71,11 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = AdaptiveTheme.of(context).theme;
+
     return SafeArea(
       child: Scaffold(
-        backgroundColor: AppColors.gray,
+        backgroundColor: AppColors.grayF3,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -93,7 +96,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                           return ValueListenableBuilder<CalendarFormat>(
                             valueListenable: _formatNotifier,
                             builder: (context, value, _) {
-                              return _buildTableCalendar(value);
+                              return _buildTableCalendar(value,currentTheme.primaryColor);
                             },
                           );
                         },
@@ -151,7 +154,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                                 horizontal: 16.r, vertical: 4.r),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(4.r),
-                                color: Colors.lightBlue),
+                                color: currentTheme.primaryColor),
                             child: Text(
                               tr("add"),
                               style: AppTextStyle.textSm
@@ -261,7 +264,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
     );
   }
 
-  Widget _buildTableCalendar(CalendarFormat format) {
+  Widget _buildTableCalendar(CalendarFormat format,Color colorMarker) {
     return TableCalendar(
       firstDay: DateTime.utc(2010, 10, 16),
       lastDay: DateTime.utc(2030, 3, 14),
@@ -281,8 +284,8 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
           color: Colors.lightBlue,
           shape: BoxShape.circle,
         ),
-        selectedDecoration: const BoxDecoration(
-          color: Colors.orange,
+        selectedDecoration:  BoxDecoration(
+          color: colorMarker,
           shape: BoxShape.circle,
         ),
         defaultTextStyle: AppTextStyle.textXs,

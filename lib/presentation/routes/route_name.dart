@@ -6,5 +6,7 @@ class RouteName {
   static const loginEmail = '/loginEmail';
   static const signup = '/signup';
   static const createEditSchedule = '/createEditSchedule';
+  static const listTask = '/listTask';
+  static const settingGeneral = '/settingGeneral';
   static const updateUser = '/updateUser';
 }

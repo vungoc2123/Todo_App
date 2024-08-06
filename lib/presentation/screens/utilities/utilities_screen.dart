@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo/application/constants/app_text_style.dart';
 import 'package:todo/domain/models/arguments/update_user_arguments.dart';
 import 'package:todo/gen/assets.gen.dart';
+import 'package:todo/presentation/common_widgets/app_bottom_sheet.dart';
 import 'package:todo/presentation/common_widgets/app_network_image.dart';
 import 'package:todo/presentation/routes/route_name.dart';
 import 'package:todo/presentation/screens/utilities/bloc/utilities_cubit.dart';
@@ -53,18 +55,20 @@ class _UtilitiesScreenState extends State<UtilitiesScreen> with RouteAware {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = AdaptiveTheme.of(context).theme;
+
     return Scaffold(
       backgroundColor: AppColors.grayF3,
       appBar: AppBar(
-        systemOverlayStyle: const SystemUiOverlayStyle(
-          statusBarColor: AppColors.colorPrimary,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: currentTheme.primaryColor,
           statusBarIconBrightness: Brightness.light,
         ),
-        backgroundColor: AppColors.colorPrimary,
+        backgroundColor: currentTheme.primaryColor,
         title: Text(
           tr("utilities"),
-          style: AppTextStyle.textXl
-              .copyWith(fontWeight: FontWeight.w700, color: AppColors.white),
+          style: AppTextStyle.textBase
+              .copyWith(fontWeight: FontWeight.w600, color: AppColors.white),
         ),
         centerTitle: true,
       ),
@@ -135,27 +139,103 @@ class _UtilitiesScreenState extends State<UtilitiesScreen> with RouteAware {
                 child: Column(
                   children: [
                     ItemFunction(
-                        actionIcon: Assets.icons.customizeComputer.svg(
-                            width: 20,
-                            height: 20,
-                            colorFilter: const ColorFilter.mode(
-                                AppColors.colorPrimary, BlendMode.srcIn)),
-                        titleAction: tr("appearance"),
-                        color: AppColors.textPrimary),
+                      actionIcon: Assets.icons.iconLanguage.svg(
+                          width: 20,
+                          height: 20,
+                          colorFilter: ColorFilter.mode(
+                              currentTheme.primaryColor, BlendMode.srcIn)),
+                      titleAction: tr("language"),
+                      color: AppColors.textPrimary,
+                      action: () {
+                        AppBottomSheet.showBottomSheet(context,
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 12.h,
+                                ),
+                                Text(
+                                  tr("choseLanguage"),
+                                  style: AppTextStyle.textBase
+                                      .copyWith(fontWeight: FontWeight.w600),
+                                ),
+                                SizedBox(
+                                  height: 12.h,
+                                ),
+                                Container(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 16.w),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        width: double.infinity,
+                                        child: InkWell(
+                                          onTap: () {
+                                            context.setLocale(
+                                                const Locale('en', 'US'));
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text(
+                                            tr("english"),
+                                            style: AppTextStyle.textSm,
+                                          ),
+                                        ),
+                                      ),
+                                      Divider(
+                                        height: 20.h,
+                                      ),
+                                      SizedBox(
+                                        width: double.infinity,
+                                        child: InkWell(
+                                          onTap: () {
+                                            context.setLocale(
+                                                const Locale('vi', 'VN'));
+                                            Navigator.of(context).pop();
+                                          },
+                                          child: Text(
+                                            tr("vietnamese"),
+                                            style: AppTextStyle.textSm,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 32.h,
+                                ),
+                              ],
+                            ));
+                      },
+                    ),
+                    ItemFunction(
+                      actionIcon: Assets.icons.customizeComputer.svg(
+                          width: 20,
+                          height: 20,
+                          colorFilter: ColorFilter.mode(
+                              currentTheme.primaryColor, BlendMode.srcIn)),
+                      titleAction: tr("appearance"),
+                      color: AppColors.textPrimary,
+                      action: () {
+                        Navigator.of(context)
+                            .pushNamed(RouteName.settingGeneral);
+                      },
+                    ),
                     ItemFunction(
                         actionIcon: Assets.icons.musicAlt.svg(
                             width: 20,
                             height: 20,
-                            colorFilter: const ColorFilter.mode(
-                                AppColors.colorPrimary, BlendMode.srcIn)),
+                            colorFilter: ColorFilter.mode(
+                                currentTheme.primaryColor, BlendMode.srcIn)),
                         titleAction: tr("sound&notify"),
                         color: AppColors.textPrimary),
                     ItemFunction(
                         actionIcon: Assets.icons.clockThree.svg(
                             width: 20,
                             height: 20,
-                            colorFilter: const ColorFilter.mode(
-                                AppColors.colorPrimary, BlendMode.srcIn)),
+                            colorFilter: ColorFilter.mode(
+                                currentTheme.primaryColor, BlendMode.srcIn)),
                         titleAction: tr("date&time"),
                         color: AppColors.textPrimary),
                     ItemFunction(
@@ -163,7 +243,7 @@ class _UtilitiesScreenState extends State<UtilitiesScreen> with RouteAware {
                           Assets.images.adjustment.path,
                           width: 20.w,
                           height: 20.w,
-                          color: AppColors.colorPrimary,
+                          color: currentTheme.primaryColor,
                         ),
                         titleAction: tr("general"),
                         color: AppColors.textPrimary),
