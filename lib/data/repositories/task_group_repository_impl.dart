@@ -17,9 +17,13 @@ class TaskGroupRepositoryImpl implements TaskGroupRepository {
   }
 
   @override
-  Future<List<TaskGroupResponse>> getList() async {
+  Future<List<TaskGroupResponse>> getList(String uid) async {
     try {
-      QuerySnapshot snapshot = await db.collection(name).get();
+      QuerySnapshot snapshot = await db
+          .collection(name)
+          .where('uid', isEqualTo: uid)
+          .orderBy('createAt', descending: true)
+          .get();
       if (snapshot.docs.isNotEmpty) {
         return snapshot.docs.map((doc) {
           return TaskGroupResponse.fromJson(doc.data() as Map<String, dynamic>);

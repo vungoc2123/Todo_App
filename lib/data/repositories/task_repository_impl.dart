@@ -39,22 +39,24 @@ class TaskRepositoryImpl implements TaskRepository {
 
   @override
   Future<List<TaskResponse>> getList(
-      {String? idCate, bool? status, bool? isTimeUpdatedShort}) async {
+      {required String idCate,
+      required String uid,
+      bool? status,
+      bool? isTimeUpdatedShort}) async {
     try {
-      late QuerySnapshot snapshot ;
-      if(status != null){
-        snapshot= await db
+      late QuerySnapshot snapshot;
+      if (status != null) {
+        snapshot = await db
             .collection(name)
+            .where('uid', isEqualTo: uid)
             .where('status', isEqualTo: status)
             .where('idCate', isEqualTo: idCate)
             .orderBy(isTimeUpdatedShort == true ? 'timeUpdate' : 'createAt',
-            descending: true)
+                descending: true)
             .get();
-      }else{
-        snapshot= await db
-            .collection(name)
-            .where('idCate', isEqualTo: idCate)
-            .get();
+      } else {
+        snapshot =
+            await db.collection(name).where('idCate', isEqualTo: idCate).get();
       }
       if (snapshot.docs.isNotEmpty) {
         return snapshot.docs.map((doc) {

@@ -95,5 +95,6 @@
   "t11": "Tháng 11",
   "t12": "Tháng 12",
   "CN": "CN",
-  "month": "Tháng"
+  "month": "Tháng",
+  "requireName": "Tên không được để trống"
 }

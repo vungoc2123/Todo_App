@@ -7,7 +7,7 @@ class AppTaskGroup{
     AppColors.pinkSubText,
     AppColors.purple,
     AppColors.yellow,
-    AppColors.yellow,
+    Colors.blue,
     AppColors.green,
     AppColors.greenA5,
     AppColors.orange
