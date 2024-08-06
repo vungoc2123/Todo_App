@@ -15,6 +15,12 @@ import 'package:vector_graphics/vector_graphics.dart';
 class $AssetsAnimationIconGen {
   const $AssetsAnimationIconGen();
 
+  /// File path: assets/animation_icon/Animation.json
+  String get animation => 'assets/animation_icon/Animation.json';
+
+  /// File path: assets/animation_icon/Animation1.json
+  String get animation1 => 'assets/animation_icon/Animation1.json';
+
   /// File path: assets/animation_icon/icon_animation_2.json
   String get iconAnimation2 => 'assets/animation_icon/icon_animation_2.json';
 
@@ -27,9 +33,23 @@ class $AssetsAnimationIconGen {
   /// File path: assets/animation_icon/loading.json
   String get loading => 'assets/animation_icon/loading.json';
 
+  /// File path: assets/animation_icon/work_hai.json
+  String get workHai => 'assets/animation_icon/work_hai.json';
+
+  /// File path: assets/animation_icon/working.json
+  String get working => 'assets/animation_icon/working.json';
+
   /// List of all assets
-  List<String> get values =>
-      [iconAnimation2, iconAnimation3, iconAnimation4, loading];
+  List<String> get values => [
+        animation,
+        animation1,
+        iconAnimation2,
+        iconAnimation3,
+        iconAnimation4,
+        loading,
+        workHai,
+        working
+      ];
 }
 
 class $AssetsIconsGen {
@@ -48,6 +68,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/briefcase.svg
   SvgGenImage get briefcase => const SvgGenImage('assets/icons/briefcase.svg');
+
+  /// File path: assets/icons/camera.svg
+  SvgGenImage get camera => const SvgGenImage('assets/icons/camera.svg');
 
   /// File path: assets/icons/check.svg
   SvgGenImage get check => const SvgGenImage('assets/icons/check.svg');
@@ -118,6 +141,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/pen-circle.svg
   SvgGenImage get penCircle => const SvgGenImage('assets/icons/pen-circle.svg');
 
+  /// File path: assets/icons/picture.svg
+  SvgGenImage get picture => const SvgGenImage('assets/icons/picture.svg');
+
   /// File path: assets/icons/plus.svg
   SvgGenImage get plus => const SvgGenImage('assets/icons/plus.svg');
 
@@ -144,6 +170,7 @@ class $AssetsIconsGen {
         apple,
         bookOpenCover,
         briefcase,
+        camera,
         check,
         checkbox,
         clockThree,
@@ -164,6 +191,7 @@ class $AssetsIconsGen {
         iconTick,
         musicAlt,
         penCircle,
+        picture,
         plus,
         puzzlePieces,
         settings,

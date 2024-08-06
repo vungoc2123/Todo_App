@@ -9,6 +9,11 @@ import 'package:todo/presentation/screens/signup/bloc/signup_state.dart';
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(const SignUpState());
 
+  String getUserName(String email){
+    int index = email.indexOf('@');
+    return email.substring(0,index);
+  }
+
   Future<void> signUpWithEmail() async {
     if(checkValidate()){
       try {
@@ -18,9 +23,13 @@ class SignUpCubit extends Cubit<SignUpState> {
           email: state.userName ?? '',
           password: state.password ?? '',
         );
-        if (credential.user != null) {
+        final user = credential.user;
+        if (user != null) {
+          await user.updateDisplayName(getUserName(user.email ?? ''));
+          await user.updatePhotoURL(AppConstants.defaultImage);
           emit(state.copyWith(
               status: LoadStatus.success, messenger: 'Register successfully'));
+
         }
       } on FirebaseAuthException catch (e) {
         emit(state.copyWith(status: LoadStatus.failure, messenger: e.code));

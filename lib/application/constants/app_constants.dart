@@ -10,4 +10,6 @@ class AppConstants {
   final RegExp passwordRegExp = RegExp(
     r'^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,20}$',
   );
+
+  static const String defaultImage = "https://firebasestorage.googleapis.com/v0/b/shopping-2697a.appspot.com/o/user.png?alt=media&token=a2b514cb-fe85-4ab2-88b0-8dfb2f69759d";
 }
