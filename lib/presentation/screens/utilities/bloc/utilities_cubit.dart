@@ -13,10 +13,10 @@ class UtilitiesCubit extends Cubit<UtilitiesState> {
     final userCredential = FirebaseAuth.instance;
     final user = userCredential.currentUser;
 
-    if (googleUser != null) {
+    if (googleUser != null && user != null) {
       final email = googleUser.email;
-      final userName = googleUser.displayName;
-      final photoUrl = googleUser.photoUrl;
+      final userName = user.displayName;
+      final photoUrl = user.photoURL;
 
       emit(state.copyWith(url: photoUrl, userName: userName, email: email));
       return;
