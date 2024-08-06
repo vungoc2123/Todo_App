@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todo/application/enums/load_status.dart';
 import 'package:todo/di.dart';
 import 'package:todo/domain/models/response/task/task_response.dart';
@@ -7,7 +8,7 @@ import 'package:bloc/bloc.dart';
 
 class ListTaskCubit extends Cubit<ListTaskState> {
   ListTaskCubit() : super(const ListTaskState());
-
+  final _auth = FirebaseAuth.instance;
   final repo = getIt.get<TaskRepository>();
 
   Future<void> addTask(String idTaskGroup) async {
@@ -19,6 +20,7 @@ class ListTaskCubit extends Cubit<ListTaskState> {
         idCate: idTaskGroup,
         status: false,
         priority: 0,
+        uid: _auth.currentUser?.uid ?? '',
         createAt: DateTime.now().toString(),
         timeUpdate: DateTime.now().toString());
     await repo.addTask(taskResponse);
@@ -26,10 +28,13 @@ class ListTaskCubit extends Cubit<ListTaskState> {
   }
 
   Future<void> getList(String idCate) async {
-    List<TaskResponse> tasks =
-        await repo.getList(idCate: idCate, status: false);
+    List<TaskResponse> tasks = await repo.getList(
+        idCate: idCate, uid: _auth.currentUser?.uid ?? '', status: false);
     List<TaskResponse> tasksCompleted = await repo.getList(
-        idCate: idCate, status: true, isTimeUpdatedShort: true);
+        uid: _auth.currentUser?.uid ?? '',
+        idCate: idCate,
+        status: true,
+        isTimeUpdatedShort: true);
     emit(state.copyWith(
         listTask: tasks,
         listTaskCompleted: tasksCompleted,
@@ -52,10 +57,16 @@ class ListTaskCubit extends Cubit<ListTaskState> {
     await repo.deleteTask(id);
   }
 
-  void change({String? name, String? description, bool? status}) {
+  void change(
+      {
+      String? name,
+      String? description,
+      bool? status}) {
     emit(state.copyWith(
-        taskResponse: state.taskResponse
-            .copyWith(title: name, description: description, status: status)));
+        taskResponse: state.taskResponse.copyWith(
+            title: name,
+            description: description,
+            status: status)));
   }
 
   void handleListVirtual(TaskResponse taskResponse, bool status) {

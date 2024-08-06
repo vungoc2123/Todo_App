@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/application/enums/load_status.dart';
 import 'package:todo/di.dart';
@@ -12,62 +13,94 @@ class TaskGroupCubit extends Cubit<TaskGroupState> {
   TaskGroupCubit() : super(const TaskGroupState());
   final repo = getIt.get<TaskGroupRepository>();
   final repoTask = getIt.get<TaskRepository>();
+  final _auth = FirebaseAuth.instance;
+
+
 
   Future<void> addTaskGroup() async {
-    emit(state.copyWith(status: LoadStatus.loading));
-    TaskGroupResponse taskGroup = TaskGroupResponse(
-        id: '',
-        title: state.taskGroupResponse.title,
-        color: state.taskGroupResponse.color,
-        icon: state.taskGroupResponse.icon,
-        totalTask: 0);
-    await repo.addTaskGroup(taskGroup);
-    emit(state.copyWith(status: LoadStatus.success));
+    try {
+      emit(state.copyWith(status: LoadStatus.loading));
+      TaskGroupResponse taskGroup = TaskGroupResponse(
+          id: '',
+          title: state.taskGroupResponse.title,
+          color: state.taskGroupResponse.color,
+          icon: state.taskGroupResponse.icon,
+          totalTask: 0,
+          createAt: DateTime.now().toString(),
+          uid: _auth.currentUser?.uid ?? '');
+      await repo.addTaskGroup(taskGroup);
+      emit(state.copyWith(status: LoadStatus.success));
+    } catch (e) {
+      emit(state.copyWith(status: LoadStatus.failure));
+    }
   }
 
   Future<void> getList() async {
-    List<TaskGroupResponse> taskGroups = await repo.getList();
-    List<Future<ItemTaskGroupModel>> futures = taskGroups.map((e) async {
-      List<TaskResponse> tasks = await repoTask.getList(idCate: e.id);
-      List<TaskResponse> filterTasks =
-          tasks.where((element) => element.status == true).toList();
-      double percent = tasks.isNotEmpty ? filterTasks.length / tasks.length : 0;
-      String percentText = (percent * 100).toStringAsFixed(1);
-      return ItemTaskGroupModel(
-          id: e.id,
-          icon: e.icon,
-          color: e.color,
-          title: e.title,
-          content: percentText,
-          percent: percent,
-          quantity: tasks.length);
-    }).toList();
-    List<ItemTaskGroupModel> listItem = await Future.wait(futures);
-    emit(state.copyWith(taskGroups: listItem, status: LoadStatus.success));
+    try {
+      List<TaskGroupResponse> taskGroups =
+          await repo.getList(_auth.currentUser?.uid ?? '');
+      List<Future<ItemTaskGroupModel>> futures = taskGroups.map((e) async {
+        List<TaskResponse> tasks = await repoTask.getList(
+            idCate: e.id, uid: _auth.currentUser?.uid ?? '');
+        List<TaskResponse> filterTasks =
+            tasks.where((element) => element.status == true).toList();
+        double percent =
+            tasks.isNotEmpty ? filterTasks.length / tasks.length : 0;
+        String percentText = (percent * 100).toStringAsFixed(1);
+        return ItemTaskGroupModel(
+            id: e.id,
+            icon: e.icon,
+            color: e.color,
+            title: e.title,
+            content: percentText,
+            percent: percent,
+            uid: e.uid,
+            createAt: e.createAt,
+            quantity: tasks.length);
+      }).toList();
+      List<ItemTaskGroupModel> listItem = await Future.wait(futures);
+      emit(state.copyWith(taskGroups: listItem, status: LoadStatus.success));
+    } catch (e) {
+      emit(state.copyWith(status: LoadStatus.failure));
+    }
   }
 
-  Future<void> updateTaskGroup() async {
-    emit(state.copyWith(status: LoadStatus.loading));
-    TaskGroupResponse taskGroup = TaskGroupResponse(
-        id: state.taskGroupResponse.id,
+  Future<void> updateTaskGroup(TaskGroupResponse taskGroupResponse) async {
+    try {
+      emit(state.copyWith(status: LoadStatus.loading));
+      TaskGroupResponse taskGroup = taskGroupResponse.copyWith(
         title: state.taskGroupResponse.title,
         color: state.taskGroupResponse.color,
         icon: state.taskGroupResponse.icon,
-        totalTask: 0);
-    await repo.updateTaskGroup(taskGroup);
-    emit(state.copyWith(status: LoadStatus.success));
+      );
+      await repo.updateTaskGroup(taskGroup);
+      emit(state.copyWith(status: LoadStatus.success));
+    } catch (e) {
+      emit(state.copyWith(status: LoadStatus.failure));
+    }
   }
 
   Future<void> deleteTaskGroup(String id) async {
-    List<ItemTaskGroupModel> list =
-        List.from(state.taskGroups.where((element) => element.id != id));
-    emit(state.copyWith(taskGroups: list));
-    await repo.deleteTaskGroup(id);
+    try {
+      List<ItemTaskGroupModel> list =
+          List.from(state.taskGroups.where((element) => element.id != id));
+      emit(state.copyWith(taskGroups: list));
+      await repo.deleteTaskGroup(id);
+    } catch (e) {
+      emit(state.copyWith(status: LoadStatus.failure));
+    }
   }
 
-  void change({String? id, String? title, String? icon, String? color}) {
+  void change({
+    String? title,
+    String? icon,
+    String? color,
+  }) {
     emit(state.copyWith(
-        taskGroupResponse: state.taskGroupResponse
-            .copyWith(id: id, title: title, icon: icon, color: color)));
+        taskGroupResponse: state.taskGroupResponse.copyWith(
+      title: title,
+      icon: icon,
+      color: color,
+    )));
   }
 }

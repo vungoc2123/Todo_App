@@ -13,6 +13,7 @@ import 'package:todo/gen/assets.gen.dart';
 import 'package:todo/presentation/common_widgets/app_bottom_sheet.dart';
 import 'package:todo/presentation/common_widgets/app_float_button.dart';
 import 'package:todo/presentation/common_widgets/app_loading_indicator.dart';
+import 'package:todo/presentation/common_widgets/app_toast.dart';
 import 'package:todo/presentation/routes/route_name.dart';
 import 'package:todo/presentation/screens/home/bloc/task_group_cubit.dart';
 import 'package:todo/presentation/screens/home/bloc/task_group_state.dart';
@@ -61,7 +62,10 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
         color: cubit.state.taskGroups[index].color,
         icon: cubit.state.taskGroups[index].icon,
         title: cubit.state.taskGroups[index].title,
-        totalTask: cubit.state.taskGroups[index].quantity);
+        totalTask: cubit.state.taskGroups[index].quantity,
+        uid: cubit.state.taskGroups[index].uid,
+        createAt: cubit.state.taskGroups[index].createAt);
+
     AppBottomSheet.showBottomSheet(context,
         child: BlocProvider(
             create: (BuildContext context) => TaskGroupCubit(),
@@ -72,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: true,
-        backgroundColor: AppColors.grey.withOpacity(0.1),
+        backgroundColor: AppColors.grayF3,
         body: SafeArea(
           child: Container(
             width: 1.sw,
@@ -84,7 +88,15 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
               SizedBox(height: 20.h),
               title(),
               SizedBox(height: 20.h),
-              BlocBuilder<TaskGroupCubit, TaskGroupState>(
+              BlocConsumer<TaskGroupCubit, TaskGroupState>(
+                listener: (BuildContext context, TaskGroupState state) {
+                  if (state.status == LoadStatus.failure) {
+                    AppToast.showToastError(context,
+                        title: tr('processFailed'));
+                  }
+                },
+                listenWhen: (previous, current) =>
+                    previous.status != current.status,
                 buildWhen: (previous, current) =>
                     previous.taskGroups != current.taskGroups ||
                     previous.status != current.status,
@@ -136,6 +148,7 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(16.r))),
                             child: InkWell(
+                              borderRadius: BorderRadius.circular(16.r),
                               onTap: () {
                                 Navigator.of(context).pushNamed(
                                     RouteName.listTask,
@@ -147,7 +160,8 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
                                   endActionPane: ActionPane(
                                     extentRatio: 0.4,
                                     motion: const ScrollMotion(),
-                                    dismissible: DismissiblePane(onDismissed: () {
+                                    dismissible:
+                                        DismissiblePane(onDismissed: () {
                                       cubit.deleteTaskGroup(
                                           state.taskGroups[index].id);
                                     }),

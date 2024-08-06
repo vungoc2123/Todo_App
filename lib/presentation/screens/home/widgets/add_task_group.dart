@@ -34,6 +34,14 @@ class _AddTaskGroupState extends State<AddTaskGroup> {
     cubit.change(icon: AppTaskGroup.listIcon[0], color: AppTaskGroup.listColor[0].colorToHexWithAlpha());
   }
 
+  bool valid(String title) {
+    if (title.isEmpty) {
+      AppToast.showToastNotify(context, title:tr('requireName'));
+      return false;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     final currentTheme = AdaptiveTheme.of(context).theme;
@@ -44,7 +52,7 @@ class _AddTaskGroupState extends State<AddTaskGroup> {
       ),
       child: Container(
         decoration: BoxDecoration(
-            color: AppColors.gray,
+            color: AppColors.grayF3,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(16.r),
                 topRight: Radius.circular(16.r))),
@@ -60,7 +68,11 @@ class _AddTaskGroupState extends State<AddTaskGroup> {
             if (LoadStatus.success == state.status) {
               Navigator.of(context).pop();
               Navigator.of(context).pop();
-              AppToast.showToastSuccess(context, title: tr('success'));
+              AppToast.showToastSuccess(context, title: tr('processSuccess'));
+            }
+            if(state.status == LoadStatus.failure){
+              Navigator.of(context).pop();
+              AppToast.showToastError(context, title: tr('processFailed'));
             }
           },
           buildWhen: (previous, current) =>
@@ -110,7 +122,9 @@ class _AddTaskGroupState extends State<AddTaskGroup> {
                   textStyle:
                       AppTextStyle.textBase.copyWith(color: AppColors.white),
                   onPressed: () {
-                    cubit.addTaskGroup();
+                    if(valid(state.taskGroupResponse.title)){
+                      cubit.addTaskGroup();
+                    }
                   },
                 )
               ],

@@ -37,77 +37,82 @@ class _UpdateTaskWidgetState extends State<UpdateTaskWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<ListTaskCubit, ListTaskState>(
-      listenWhen: (previous, current) => previous.status != current.status,
-      listener: (BuildContext context, state) {
-        if (LoadStatus.loading == state.status) {
-          showDialog(
-              context: context,
-              builder: (context) => const AppLoading(),
-              barrierDismissible: false);
-        }
-        if (LoadStatus.success == state.status) {
-          Navigator.of(context).pop();
-          Navigator.of(context).pop();
-          AppToast.showToastSuccess(context, title: tr('success'));
-        }
-      },
-      builder: (BuildContext context, state) {
-        return Container(
-          padding: EdgeInsets.all(16.r),
-          decoration: BoxDecoration(
-              color: AppColors.gray,
-              borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(16.r),
-                  topLeft: Radius.circular(16.r))),
-          child: Column(
-            children: [
-              Text(
-                tr("updateTask"),
-                style: AppTextStyle.textXl,
-              ),
-              SizedBox(
-                height: 16.h,
-              ),
-              CustomLabelTextField(
-                label: tr("nameTask"),
-                backgroundColor: AppColors.white,
-                textStyleLabel: AppTextStyle.textBase,
-                defaultValue: widget.task.title,
-                onChanged: (value) {
-                  cubit.change(name: value);
-                },
-              ),
-              SizedBox(
-                height: 16.h,
-              ),
-              CustomLabelTextField(
-                label: tr("description"),
-                backgroundColor: AppColors.white,
-                textStyleLabel: AppTextStyle.textBase,
-                defaultValue: widget.task.description,
-                maxLine: 5,
-                onChanged: (value) {
-                  cubit.change(description: value);
-                },
-              ),
-              SizedBox(
-                height: 16.h,
-              ),
-              AppButton(
-                title: tr("update"),
-                color: AppColors.blue,
-                textStyle:
-                    AppTextStyle.textBase.copyWith(color: AppColors.white),
-                radius: 8.r,
-                onPressed: () {
-                  cubit.updateTask(widget.task);
-                },
-              )
-            ],
-          ),
-        );
-      },
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+      ),
+      child: BlocConsumer<ListTaskCubit, ListTaskState>(
+        listenWhen: (previous, current) => previous.status != current.status,
+        listener: (BuildContext context, state) {
+          if (LoadStatus.loading == state.status) {
+            showDialog(
+                context: context,
+                builder: (context) => const AppLoading(),
+                barrierDismissible: false);
+          }
+          if (LoadStatus.success == state.status) {
+            Navigator.of(context).pop();
+            Navigator.of(context).pop();
+            AppToast.showToastSuccess(context, title: tr('success'));
+          }
+        },
+        builder: (BuildContext context, state) {
+          return Container(
+            padding: EdgeInsets.all(16.r),
+            decoration: BoxDecoration(
+                color: AppColors.grayF3,
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(16.r),
+                    topLeft: Radius.circular(16.r))),
+            child: Column(
+              children: [
+                Text(
+                  tr("updateTask"),
+                  style: AppTextStyle.textXl,
+                ),
+                SizedBox(
+                  height: 16.h,
+                ),
+                CustomLabelTextField(
+                  label: tr("nameTask"),
+                  backgroundColor: AppColors.white,
+                  textStyleLabel: AppTextStyle.textBase,
+                  defaultValue: widget.task.title,
+                  onChanged: (value) {
+                    cubit.change(name: value);
+                  },
+                ),
+                SizedBox(
+                  height: 16.h,
+                ),
+                CustomLabelTextField(
+                  label: tr("description"),
+                  backgroundColor: AppColors.white,
+                  textStyleLabel: AppTextStyle.textBase,
+                  defaultValue: widget.task.description,
+                  maxLine: 5,
+                  onChanged: (value) {
+                    cubit.change(description: value);
+                  },
+                ),
+                SizedBox(
+                  height: 16.h,
+                ),
+                AppButton(
+                  title: tr("update"),
+                  color: AppColors.blue,
+                  textStyle:
+                      AppTextStyle.textBase.copyWith(color: AppColors.white),
+                  radius: 8.r,
+                  onPressed: () {
+                    cubit.updateTask(widget.task);
+                  },
+                )
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 

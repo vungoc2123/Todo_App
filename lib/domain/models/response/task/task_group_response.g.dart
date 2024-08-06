@@ -13,6 +13,8 @@ TaskGroupResponse _$TaskGroupResponseFromJson(Map<String, dynamic> json) =>
       totalTask: (json['totalTask'] as num?)?.toInt() ?? 0,
       icon: json['icon'] as String? ?? '',
       color: json['color'] as String? ?? '',
+      uid: json['uid'] as String? ?? '',
+      createAt: json['createAt'] as String? ?? '',
     );
 
 Map<String, dynamic> _$TaskGroupResponseToJson(TaskGroupResponse instance) =>
@@ -22,4 +24,6 @@ Map<String, dynamic> _$TaskGroupResponseToJson(TaskGroupResponse instance) =>
       'totalTask': instance.totalTask,
       'icon': instance.icon,
       'color': instance.color,
+      'uid': instance.uid,
+      'createAt': instance.createAt,
     };

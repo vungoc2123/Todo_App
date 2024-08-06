@@ -16,6 +16,8 @@ class ItemTaskGroupModel {
   final String content;
   final double percent;
   final int quantity;
+  final String uid;
+  final String createAt;
 
   ItemTaskGroupModel(
       {required this.id,
@@ -24,6 +26,8 @@ class ItemTaskGroupModel {
       required this.title,
       required this.content,
       required this.percent,
+      required this.uid,
+      required this.createAt,
       required this.quantity});
 }
 

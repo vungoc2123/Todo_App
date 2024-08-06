@@ -58,7 +58,7 @@ class _ListTaskScreenState extends State<ListTaskScreen> with RouteAware {
     final currentTheme = AdaptiveTheme.of(context).theme;
 
     return Scaffold(
-      backgroundColor: AppColors.gray,
+      backgroundColor: AppColors.grayF3,
       appBar: AppBar(
         title: Text(
           tr("listTask"),

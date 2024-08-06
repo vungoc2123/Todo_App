@@ -30,6 +30,14 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
     super.initState();
     cubit = BlocProvider.of<ListTaskCubit>(context);
   }
+  bool valid(String title) {
+    if (title.isEmpty) {
+      AppToast.showToastNotify(context, title:tr('requireName'));
+      return false;
+    }
+    return true;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +64,7 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
         child: Container(
           padding: EdgeInsets.all(16.r),
           decoration: BoxDecoration(
-              color: AppColors.gray,
+              color: AppColors.grayF3,
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(16.r), topLeft: Radius.circular(16.r))),
           child: Column(
@@ -75,7 +83,7 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                 onChanged: (value) {
                   cubit.change(name: value);
                 },
-              ),
+             ),
               SizedBox(
                 height: 16.h,
               ),
@@ -97,7 +105,9 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                 radius: 8.r,
                 textStyle: AppTextStyle.textBase.copyWith(color: AppColors.white),
                 onPressed: () {
-                  cubit.addTask(widget.idTaskGroup);
+                  if(valid(cubit.state.taskResponse.title)){
+                    cubit.addTask(widget.idTaskGroup);
+                  }
                 },
               )
             ],

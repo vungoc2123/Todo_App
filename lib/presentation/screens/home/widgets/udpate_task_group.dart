@@ -35,7 +35,6 @@ class _UpdateTaskGroupState extends State<UpdateTaskGroup> {
     super.initState();
     cubit = BlocProvider.of<TaskGroupCubit>(context);
     cubit.change(
-        id: widget.taskGroupResponse.id,
         title: widget.taskGroupResponse.title,
         icon: widget.taskGroupResponse.icon,
         color: widget.taskGroupResponse.color);
@@ -50,7 +49,7 @@ class _UpdateTaskGroupState extends State<UpdateTaskGroup> {
       ),
       child: Container(
         decoration: BoxDecoration(
-            color: AppColors.gray,
+            color: AppColors.grayF3,
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(16.r),
                 topRight: Radius.circular(16.r))),
@@ -66,7 +65,11 @@ class _UpdateTaskGroupState extends State<UpdateTaskGroup> {
             if (LoadStatus.success == state.status) {
               Navigator.of(context).pop();
               Navigator.of(context).pop();
-              AppToast.showToastSuccess(context, title: tr('success'));
+              AppToast.showToastSuccess(context, title: tr('processSuccess'));
+            }
+            if (state.status == LoadStatus.failure) {
+              Navigator.of(context).pop();
+              AppToast.showToastError(context, title: tr('processFailed'));
             }
           },
           buildWhen: (previous, current) =>
@@ -103,7 +106,8 @@ class _UpdateTaskGroupState extends State<UpdateTaskGroup> {
                       height: 16.h,
                     ),
                     title(tr("chooseIcon")),
-                    iconWidget(state.taskGroupResponse.icon,currentTheme.primaryColor),
+                    iconWidget(state.taskGroupResponse.icon,
+                        currentTheme.primaryColor),
                   ],
                 ),
                 SizedBox(
@@ -116,7 +120,7 @@ class _UpdateTaskGroupState extends State<UpdateTaskGroup> {
                   textStyle:
                       AppTextStyle.textBase.copyWith(color: AppColors.white),
                   onPressed: () {
-                    cubit.updateTaskGroup();
+                    cubit.updateTaskGroup(widget.taskGroupResponse);
                   },
                 )
               ],
@@ -172,7 +176,7 @@ class _UpdateTaskGroupState extends State<UpdateTaskGroup> {
     );
   }
 
-  Widget iconWidget(String icon,Color color) {
+  Widget iconWidget(String icon, Color color) {
     return SizedBox(
       width: 1.sw,
       child: Row(

@@ -11,6 +11,7 @@ class TaskResponse {
   final bool status;
   final int priority;
   final String createAt;
+  final String uid;
   final String timeUpdate;
 
   const TaskResponse(
@@ -21,6 +22,7 @@ class TaskResponse {
       this.idCate = '',
       this.createAt = '',
       this.timeUpdate = '',
+      this.uid = '',
       this.description});
 
   TaskResponse copyWith({
@@ -31,6 +33,7 @@ class TaskResponse {
     int? priority,
     String? createAt,
     String? timeUpdate,
+    String? uid,
     String? description,
   }) {
     return TaskResponse(
@@ -40,6 +43,7 @@ class TaskResponse {
       status: status ?? this.status,
       priority: priority ?? this.priority,
       createAt: createAt ?? this.createAt,
+      uid: uid ?? this.uid,
       timeUpdate: timeUpdate ?? this.timeUpdate,
       description: description ?? this.description,
     );
