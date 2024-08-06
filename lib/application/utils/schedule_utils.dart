@@ -1,29 +1,31 @@
+import 'package:easy_localization/easy_localization.dart';
+
 class LocaleVi {
   static final Map<String, String> _monthNames = {
-    '1': 'Tháng 1',
-    '2': 'Tháng 2',
-    '3': 'Tháng 3',
-    '4': 'Tháng 4',
-    '5': 'Tháng 5',
-    '6': 'Tháng 6',
-    '7': 'Tháng 7',
-    '8': 'Tháng 8',
-    '9': 'Tháng 9',
-    '10': 'Tháng 10',
-    '11': 'Tháng 11',
-    '12': 'Tháng 12',
+    '1': tr('t1'),
+    '2': tr('t2'),
+    '3': tr('t3'),
+    '4': tr('t4'),
+    '5': tr('t5'),
+    '6': tr('t6'),
+    '7': tr('t7'),
+    '8': tr('t8'),
+    '9': tr('t9'),
+    '10': tr('t10'),
+    '11': tr('t11'),
+    '12': tr('t12'),
   };
 
   static final Map<int, String> _dayOfWeekNames = {
-    DateTime.monday: 'T2',
-    DateTime.tuesday: 'T3',
-    DateTime.wednesday: 'T4',
-    DateTime.thursday: 'T5',
-    DateTime.friday: 'T6',
-    DateTime.saturday: 'T7',
-    DateTime.sunday: 'CN',
+    DateTime.monday: tr('T2'),
+    DateTime.tuesday: tr('T3'),
+    DateTime.wednesday: tr('T4'),
+    DateTime.thursday: tr('T5'),
+    DateTime.friday: tr('T6'),
+    DateTime.saturday: tr('T7'),
+    DateTime.sunday: tr('CN'),
   };
 
-  static String monthName(int month) => _monthNames[month.toString()] ?? 'Tháng $month';
+  static String monthName(int month) => _monthNames[month.toString()] ?? '${tr("month")} $month';
   static String dayOfWeekName(int weekday) => _dayOfWeekNames[weekday] ?? 'Ngày $weekday';
 }

@@ -8,4 +8,5 @@ class RouteName {
   static const createEditSchedule = '/createEditSchedule';
   static const listTask = '/listTask';
   static const settingGeneral = '/settingGeneral';
+  static const updateUser = '/updateUser';
 }

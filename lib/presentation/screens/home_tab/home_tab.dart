@@ -1,12 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:todo/gen/assets.gen.dart';
 import 'package:todo/presentation/screens/focus/bloc/focus_cubit.dart';
 import 'package:todo/presentation/screens/focus/focus_screen.dart';
 import 'package:todo/presentation/screens/home/bloc/task_group_cubit.dart';
 import 'package:todo/presentation/screens/home/home_screen.dart';
 import 'package:todo/presentation/screens/home_tab/widget/bottom_bar_widget.dart';
+
 import 'package:todo/presentation/screens/schedule/schedules_screen.dart';
 import '../schedule/schedule_cubit.dart';
 import '../utilities/bloc/utilities_cubit.dart';

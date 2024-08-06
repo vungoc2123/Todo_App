@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -17,12 +18,13 @@ class AppLoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = AdaptiveTheme.of(context).theme;
     return Center(
       widthFactor: widthFactor,
       child: SpinKitFadingCircle(
         size: sizeLoading ?? 30.r,
         duration: const Duration(milliseconds: 1000),
-        color: color ?? AppColors.blueBold,
+        color: currentTheme.primaryColor,
       ),
     );
   }

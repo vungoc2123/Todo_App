@@ -158,7 +158,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     borderRadius: BorderRadius.circular(8.r),
                     splashColor: AppColors.grey1.withOpacity(0.1),
                     highlightColor: AppColors.grey1.withOpacity(0.2),
-                    onTap: () => cubit.signUpWithEmail(),
+                    onTap: () => {
+                      cubit.signUpWithEmail()},
                     child: Ink(
                       width: 1.sw,
                       height: 52.h,

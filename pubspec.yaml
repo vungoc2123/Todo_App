@@ -84,7 +84,6 @@ dependencies:
   percent_indicator: ^4.2.3
   drag_and_drop_lists: ^0.4.1
   flutter_slidable: ^3.1.1
-  intl: ^0.18.1
   adaptive_theme: ^3.6.0
   flutter_time_picker_spinner: ^2.0.0
   just_audio: ^0.9.39
@@ -94,7 +93,7 @@ dependencies:
   #image
   cached_network_image: ^3.3.1
   fluttertoast: ^8.2.5
-  image_picker: ^1.0.8
+  image_picker: ^1.1.2
 
 
   #firebase
@@ -102,6 +101,8 @@ dependencies:
   cloud_firestore: ^4.15.8
   google_sign_in: ^6.2.1
   firebase_auth: ^4.17.8
+  intl: ^0.18.1
+  firebase_storage: ^11.6.9
 
 
 
