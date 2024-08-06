@@ -17,4 +17,6 @@ class AppTextStyle {
       GoogleFonts.inter(fontSize: 24.sp, height: 32.sp / 24.sp);
   static final TextStyle text3Xl =
       GoogleFonts.inter(fontSize: 30.sp, height: 36.sp / 30.sp);
+  static final TextStyle text4Xl =
+      GoogleFonts.inter(fontSize: 36.sp, height: 44.sp / 36.sp);
 }

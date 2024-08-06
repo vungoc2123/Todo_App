@@ -85,6 +85,9 @@ dependencies:
   drag_and_drop_lists: ^0.4.1
   flutter_slidable: ^3.1.1
   adaptive_theme: ^3.6.0
+  flutter_time_picker_spinner: ^2.0.0
+  just_audio: ^0.9.39
+  flutter_local_notifications: ^17.2.1+2
 
 
   #image
@@ -137,6 +140,7 @@ flutter:
     - assets/icons/
     - assets/translations/
     - assets/animation_icon/
+    - assets/music/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

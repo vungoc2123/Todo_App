@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:todo/application/constants/app_colors.dart';
-import 'package:todo/application/constants/app_text_style.dart';
 import 'package:todo/presentation/screens/home_tab/home_tab.dart';
 
 class BottomBarItemWidget extends StatelessWidget {

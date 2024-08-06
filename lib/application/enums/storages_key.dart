@@ -2,5 +2,6 @@ enum StoragesKey {
   accessToken,
   theme,
   iconLoading,
-  locale
+  locale,
+  animation
 }

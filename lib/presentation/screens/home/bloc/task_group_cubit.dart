@@ -1,33 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todo/application/constants/app_colors.dart';
 import 'package:todo/application/enums/load_status.dart';
 import 'package:todo/di.dart';
 import 'package:todo/domain/models/response/task/task_group_response.dart';
 import 'package:todo/domain/models/response/task/task_response.dart';
 import 'package:todo/domain/repositories/task_group_repository.dart';
 import 'package:todo/domain/repositories/task_repository.dart';
-import 'package:todo/gen/assets.gen.dart';
 import 'package:todo/presentation/screens/home/bloc/task_group_state.dart';
 import 'package:todo/presentation/screens/home/widgets/item_task.dart';
-
-final List<Color> listColor = [
-  AppColors.grey,
-  AppColors.blue,
-  AppColors.yellow,
-  AppColors.pinkSubText,
-  AppColors.black,
-  AppColors.red,
-  AppColors.green,
-];
-
-List<String> listIcon = [
-  Assets.icons.briefcase.path,
-  Assets.icons.puzzlePieces.path,
-  Assets.icons.bookOpenCover.path,
-  Assets.icons.walking.path,
-  Assets.icons.userChef.path,
-];
 
 class TaskGroupCubit extends Cubit<TaskGroupState> {
   TaskGroupCubit() : super(const TaskGroupState());

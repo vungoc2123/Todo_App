@@ -36,7 +36,7 @@ class AppRouter {
         break;
       case RouteName.loginEmail:
         routeWidget = BlocProvider(
-          create: (context) => LoginEmailCubit(),
+            create: (context) => LoginEmailCubit(),
             child: const LoginEmailScreen());
       case RouteName.signup:
         routeWidget = BlocProvider(
@@ -67,7 +67,9 @@ class AppRouter {
       case RouteName.listTask:
         routeWidget = BlocProvider(
             create: (context) => ListTaskCubit(),
-            child: ListTaskScreen(argument: arguments as ListTaskArguments,));
+            child: ListTaskScreen(
+              argument: arguments as ListTaskArguments,
+            ));
         break;
       case RouteName.settingGeneral:
         routeWidget = const SettingGeneralScreen();
