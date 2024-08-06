@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,6 +42,7 @@ class _UpdateTaskGroupState extends State<UpdateTaskGroup> {
 
   @override
   Widget build(BuildContext context) {
+    final currentTheme = AdaptiveTheme.of(context).theme;
     return Padding(
       padding: EdgeInsets.only(
         bottom: MediaQuery.of(context).viewInsets.bottom,
@@ -101,7 +103,7 @@ class _UpdateTaskGroupState extends State<UpdateTaskGroup> {
                       height: 16.h,
                     ),
                     title(tr("chooseIcon")),
-                    iconWidget(state.taskGroupResponse.icon),
+                    iconWidget(state.taskGroupResponse.icon,currentTheme.primaryColor),
                   ],
                 ),
                 SizedBox(
@@ -109,7 +111,7 @@ class _UpdateTaskGroupState extends State<UpdateTaskGroup> {
                 ),
                 AppButton(
                   title: tr("update"),
-                  color: AppColors.blue,
+                  color: currentTheme.primaryColor,
                   radius: 8.r,
                   textStyle:
                       AppTextStyle.textBase.copyWith(color: AppColors.white),
@@ -167,7 +169,7 @@ class _UpdateTaskGroupState extends State<UpdateTaskGroup> {
     );
   }
 
-  Widget iconWidget(String icon) {
+  Widget iconWidget(String icon,Color color) {
     return SizedBox(
       width: 1.sw,
       child: Row(
@@ -187,7 +189,7 @@ class _UpdateTaskGroupState extends State<UpdateTaskGroup> {
                             listIcon[index],
                             colorFilter: ColorFilter.mode(
                                 listIcon[index] == icon
-                                    ? AppColors.blue
+                                    ? color
                                     : AppColors.grey,
                                 BlendMode.srcIn),
                           )),
