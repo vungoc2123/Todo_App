@@ -101,10 +101,14 @@ class _UtilitiesScreenState extends State<UtilitiesScreen> with RouteAware {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(99.r),
                               border: Border.all(
-                                  color: AppColors.colorPrimary, width: 1.5)),
+                                  color: currentTheme.primaryColor,
+                                  width: 1.5)),
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(99.r),
-                              child: AppNetworkImage(state.url)),
+                              child: AppNetworkImage(
+                                state.url,
+                                fit: BoxFit.fill,
+                              )),
                         ),
                         SizedBox(width: 12.w),
                         Column(
