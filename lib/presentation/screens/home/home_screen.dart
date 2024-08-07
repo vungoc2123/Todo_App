@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,12 +32,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with RouteAware {
   late final TaskGroupCubit cubit;
+  late User user;
 
   @override
   void initState() {
     super.initState();
     cubit = BlocProvider.of<TaskGroupCubit>(context);
     cubit.getList();
+    user = FirebaseAuth.instance.currentUser!;
   }
 
   @override
@@ -48,6 +51,7 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
   @override
   void didPopNext() {
     cubit.getList();
+    user = FirebaseAuth.instance.currentUser!;
   }
 
   @override
@@ -84,7 +88,9 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
             padding: EdgeInsets.all(16.r),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              const HeaderWidget(),
+              HeaderWidget(
+                user: user,
+              ),
               SizedBox(height: 20.h),
               title(),
               SizedBox(height: 20.h),
