@@ -6,7 +6,6 @@ import 'package:todo/application/constants/app_text_style.dart';
 import 'package:todo/domain/models/response/task/task_response.dart';
 import 'package:todo/presentation/common_widgets/app_bottom_sheet.dart';
 import 'package:todo/presentation/screens/list_task/bloc/list_task_cubit.dart';
-import 'package:todo/presentation/screens/list_task/widgets/add_task.dart';
 import 'package:todo/presentation/screens/list_task/widgets/update_task.dart';
 
 class ItemTask extends StatelessWidget {
