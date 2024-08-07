@@ -38,6 +38,8 @@ class ListTaskCubit extends Cubit<ListTaskState> {
     emit(state.copyWith(
         listTask: tasks,
         listTaskCompleted: tasksCompleted,
+        listTaskInit: tasks,
+        listTaskCompletedInit: tasksCompleted,
         status: LoadStatus.success));
   }
 
@@ -57,29 +59,51 @@ class ListTaskCubit extends Cubit<ListTaskState> {
     await repo.deleteTask(id);
   }
 
-  void change(
-      {
-      String? name,
-      String? description,
-      bool? status}) {
+  void change({String? name, String? description, bool? status}) {
     emit(state.copyWith(
-        taskResponse: state.taskResponse.copyWith(
-            title: name,
-            description: description,
-            status: status)));
+        taskResponse: state.taskResponse
+            .copyWith(title: name, description: description, status: status)));
+  }
+
+  void filterList(String name) {
+    List<TaskResponse> listTask = List.from(state.listTaskInit);
+    List<TaskResponse> listTaskCompleted =
+        List.from(state.listTaskCompletedInit);
+    if (name.isEmpty) {
+      emit(state.copyWith(
+          listTask: listTask, listTaskCompleted: listTaskCompleted));
+    }
+    List<TaskResponse> filteredListTask =
+        listTask.where((element) => element.title.contains(name)).toList();
+    List<TaskResponse> filteredListTaskCompleted = listTaskCompleted
+        .where((element) => element.title.contains(name))
+        .toList();
+    emit(state.copyWith(
+        listTask: filteredListTask,
+        listTaskCompleted: filteredListTaskCompleted));
   }
 
   void handleListVirtual(TaskResponse taskResponse, bool status) {
     List<TaskResponse> newList = List.from(state.listTask);
     List<TaskResponse> newListCompleted = List.from(state.listTaskCompleted);
+    List<TaskResponse> newListInit = List.from(state.listTaskInit);
+    List<TaskResponse> newListCompletedInit =
+        List.from(state.listTaskCompletedInit);
     if (status) {
       handleChangeStatus(newList, newListCompleted, taskResponse.id, status);
+      handleChangeStatus(
+          newListInit, newListCompletedInit, taskResponse.id, status);
     } else {
       handleChangeStatus(newListCompleted, newList, taskResponse.id, status);
+      handleChangeStatus(
+          newListCompletedInit, newListInit, taskResponse.id, status);
     }
     handleSortListVirtual(newList);
-    emit(
-        state.copyWith(listTaskCompleted: newListCompleted, listTask: newList));
+    emit(state.copyWith(
+        listTaskCompleted: newListCompleted,
+        listTask: newList,
+        listTaskInit: newListInit,
+        listTaskCompletedInit: newListCompletedInit));
   }
 
   void handleChangeStatus(List<TaskResponse> list, List<TaskResponse> newList,
@@ -104,13 +128,15 @@ class ListTaskCubit extends Cubit<ListTaskState> {
       TaskResponse task =
           state.listTask.firstWhere((element) => element.id == id);
       newList.remove(task);
-      emit(state.copyWith(listTask: newList));
+      emit(state.copyWith(listTask: newList, listTaskInit: newList));
     } else {
       List<TaskResponse> newListCompleted = List.from(state.listTaskCompleted);
       TaskResponse taskCompleted =
           state.listTaskCompleted.firstWhere((element) => element.id == id);
       newListCompleted.remove(taskCompleted);
-      emit(state.copyWith(listTaskCompleted: newListCompleted));
+      emit(state.copyWith(
+          listTaskCompleted: newListCompleted,
+          listTaskCompletedInit: newListCompleted));
     }
   }
 

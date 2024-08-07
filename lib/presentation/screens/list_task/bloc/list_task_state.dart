@@ -5,28 +5,43 @@ import 'package:todo/domain/models/response/task/task_response.dart';
 class ListTaskState extends Equatable {
   final List<TaskResponse> listTask;
   final List<TaskResponse> listTaskCompleted;
+  final List<TaskResponse> listTaskInit;
+  final List<TaskResponse> listTaskCompletedInit;
   final TaskResponse taskResponse;
   final LoadStatus status;
 
   const ListTaskState(
       {this.taskResponse = const TaskResponse(),
       this.listTask = const [],
-      this.status = LoadStatus.initial,
-      this.listTaskCompleted = const []});
+      this.listTaskInit = const [],
+      this.listTaskCompletedInit = const [],
+      this.listTaskCompleted = const [],
+      this.status = LoadStatus.initial});
 
   ListTaskState copyWith(
       {TaskResponse? taskResponse,
       List<TaskResponse>? listTask,
       LoadStatus? status,
+      List<TaskResponse>? listTaskInit,
+      List<TaskResponse>? listTaskCompletedInit,
       List<TaskResponse>? listTaskCompleted}) {
     return ListTaskState(
         taskResponse: taskResponse ?? this.taskResponse,
-        listTask: listTask ?? this.listTask,
         status: status ?? this.status,
-        listTaskCompleted: listTaskCompleted ?? this.listTaskCompleted);
+        listTask: listTask ?? this.listTask,
+        listTaskInit: listTaskInit ?? this.listTaskInit,
+        listTaskCompleted: listTaskCompleted ?? this.listTaskCompleted,
+        listTaskCompletedInit:
+            listTaskCompletedInit ?? this.listTaskCompletedInit);
   }
 
   @override
-  List<Object?> get props =>
-      [listTask, status, listTaskCompleted, taskResponse];
+  List<Object?> get props => [
+        status,
+        listTask,
+        listTaskCompleted,
+        listTaskInit,
+        listTaskCompletedInit,
+        taskResponse
+      ];
 }
