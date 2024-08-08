@@ -16,6 +16,12 @@
         </array>
       </dict>
     </array>
+    <key>GIDClientID</key>
+	<string>962712836791-je2dnqmv5qd94f6j0ov829dd3lk6aa64.apps.googleusercontent.com</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>USE PHOTO LIBRARY</string>
+    <key>NSCameraUsageDescription</key>
+    <string>USE CAMERA</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
