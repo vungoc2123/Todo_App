@@ -49,6 +49,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
         ),
       ),
       body: BlocListener<LoginEmailCubit, LoginEmailState>(
+        listenWhen: (previous, current) => previous.status != current.status || previous.messenger != current.messenger,
         listener: (context, state) => {
           if (state.status == LoadStatus.success)
             {
@@ -69,12 +70,6 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
             {
               showDialog(
                   context: context, builder: (context) => const AppLoading()),
-              Future.delayed(const Duration(seconds: 15), () {
-                if (Navigator.canPop(context)) {
-                  Navigator.pop(context);
-                }
-                AppToast.showToastError(context, title: 'Lỗi kết nối');
-              })
             }
         },
         child: SafeArea(
