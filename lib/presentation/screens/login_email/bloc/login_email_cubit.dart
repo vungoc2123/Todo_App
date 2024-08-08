@@ -20,11 +20,11 @@ class LoginEmailCubit extends Cubit<LoginEmailState>{
           emit(state.copyWith(status: LoadStatus.success, messenger: "Đăng nhập thành công"));
         }
       } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
-          emit(state.copyWith(status: LoadStatus.failure,messenger: 'Người dùng không tồn tại'));
-        } else if (e.code == 'wrong-password') {
+        if (e.code == 'invalid-credential') {
           emit(state.copyWith(status: LoadStatus.failure,messenger: 'Sai thông tin tài khoản'));
+          return;
         }
+        emit(state.copyWith(status: LoadStatus.failure,messenger: e.code));
       } catch (e){
         emit(state.copyWith(status: LoadStatus.failure,messenger: e.toString()));
       }
