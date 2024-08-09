@@ -41,7 +41,7 @@ class _ReportFocusWidgetState extends State<ReportFocusWidget> {
     final currentTheme =
         AdaptiveTheme.of(context).theme;
     return Container(
-      padding: EdgeInsets.all(12.h),
+      padding: EdgeInsets.all(12.w),
       decoration: BoxDecoration(
           color: AppColors.white, borderRadius: BorderRadius.circular(8.r)),
       child: Column(
@@ -122,7 +122,7 @@ class _ReportFocusWidgetState extends State<ReportFocusWidget> {
                     );
                   }
                   return SizedBox(
-                      width: 1.sw - 102.w ,
+                      width: 1.sw-109.w,
                       height: 175.h,
                       child: const AppLoadingIndicator());
                 },
