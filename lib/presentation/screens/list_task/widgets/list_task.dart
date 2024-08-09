@@ -18,7 +18,9 @@ class ListTaskWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
+    return MediaQuery.removeViewPadding(
+      context: context,
+      removeBottom: true,
       child: Container(
           margin: EdgeInsets.only(
               top: isListCompleted &&

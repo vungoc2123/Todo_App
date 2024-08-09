@@ -1,5 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:todo/application/constants/app_colors.dart';
@@ -98,62 +99,64 @@ class _ListTaskScreenState extends State<ListTaskScreen> with RouteAware {
             SizedBox(
               height: 8.h,
             ),
-            BlocBuilder<ListTaskCubit, ListTaskState>(
-              buildWhen: (previous, current) =>
-                  previous.listTask != current.listTask ||
-                  previous.listTaskCompleted != current.listTaskCompleted ||
-                  previous.status != current.status ||
-                  previous.listTaskCompletedInit !=
-                      current.listTaskCompletedInit ||
-                  previous.listTaskInit != current.listTaskInit,
-              builder: (BuildContext context, ListTaskState state) {
-                if (state.listTask.isEmpty &&
-                    state.listTaskCompleted.isEmpty &&
-                    state.status == LoadStatus.initial) {
-                  return Center(
-                    child: SizedBox(
-                      height: 120.h,
-                      child: const AppLoadingIndicator(
-                        color: AppColors.colorPrimary,
-                      ),
-                    ),
-                  );
-                }
-                if (state.listTask.isEmpty &&
-                    state.listTaskCompleted.isEmpty &&
-                    state.status != LoadStatus.initial) {
-                  return Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Assets.images.task.image(width: 100.r, height: 100.r),
-                        SizedBox(
-                          height: 8.h,
+            Expanded(
+              child: BlocBuilder<ListTaskCubit, ListTaskState>(
+                buildWhen: (previous, current) =>
+                    previous.listTask != current.listTask ||
+                    previous.listTaskCompleted != current.listTaskCompleted ||
+                    previous.status != current.status ||
+                    previous.listTaskCompletedInit !=
+                        current.listTaskCompletedInit ||
+                    previous.listTaskInit != current.listTaskInit,
+                builder: (BuildContext context, ListTaskState state) {
+                  if (state.listTask.isEmpty &&
+                      state.listTaskCompleted.isEmpty &&
+                      state.status == LoadStatus.initial) {
+                    return Center(
+                      child: SizedBox(
+                        height: 120.h,
+                        child: const AppLoadingIndicator(
+                          color: AppColors.colorPrimary,
                         ),
-                        Text(
-                          tr('youHaveNotTask'),
-                          style: AppTextStyle.textBase,
+                      ),
+                    );
+                  }
+                  if (state.listTask.isEmpty &&
+                      state.listTaskCompleted.isEmpty &&
+                      state.status != LoadStatus.initial) {
+                    return Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Assets.images.task.image(width: 100.r, height: 100.r),
+                          SizedBox(
+                            height: 8.h,
+                          ),
+                          Text(
+                            tr('youHaveNotTask'),
+                            style: AppTextStyle.textBase,
+                          )
+                        ],
+                      ),
+                    );
+                  }
+                  return SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        ListTaskWidget(
+                          isListCompleted: false,
+                          state: state,
+                        ),
+                        ListTaskWidget(
+                          isListCompleted: true,
+                          state: state,
                         )
                       ],
                     ),
                   );
-                }
-                return SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      ListTaskWidget(
-                        isListCompleted: false,
-                        state: state,
-                      ),
-                      ListTaskWidget(
-                        isListCompleted: true,
-                        state: state,
-                      )
-                    ],
-                  ),
-                );
-              },
+                },
+              ),
             ),
           ],
         ),
