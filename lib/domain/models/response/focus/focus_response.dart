@@ -5,15 +5,22 @@ part 'focus_response.g.dart';
 @JsonSerializable()
 class FocusResponse {
   final String id;
-  final String uID;
+  final String uid;
+  final String dateTime;
   final double completedTime;
 
-  FocusResponse({this.id = '', this.uID = '', this.completedTime = 0});
+  FocusResponse(
+      {this.id = '',
+      this.uid = '',
+      this.dateTime = '',
+      this.completedTime = 0});
 
-  FocusResponse copyWith(String? id, String? uID, double? completedTime) {
+  FocusResponse copyWith(
+      String? id, String? uid, String? dateTime, double? completedTime) {
     return FocusResponse(
         id: id ?? this.id,
-        uID: uID ?? this.uID,
+        uid: uid ?? this.uid,
+        dateTime: dateTime ?? this.dateTime,
         completedTime: completedTime ?? this.completedTime);
   }
 
