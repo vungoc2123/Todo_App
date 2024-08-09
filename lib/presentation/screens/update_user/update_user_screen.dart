@@ -78,7 +78,7 @@ class _UpdateUserScreenState extends State<UpdateUserScreen>{
                     context: context,
                     builder: (context) => AlertDialog(
                         title: Text(
-                          tr("chooseFromSource"),
+                          tr("choseFromSource"),
                           textAlign: TextAlign.center,
                         ),
                         content: BlocProvider.value(
