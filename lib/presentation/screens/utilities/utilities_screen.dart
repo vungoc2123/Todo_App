@@ -69,7 +69,7 @@ class _UtilitiesScreenState extends State<UtilitiesScreen> with RouteAware {
         backgroundColor: currentTheme.primaryColor,
         title: Text(
           tr("utilities"),
-          style: AppTextStyle.textBase
+          style: AppTextStyle.textXl
               .copyWith(fontWeight: FontWeight.w600, color: AppColors.white),
         ),
         centerTitle: true,

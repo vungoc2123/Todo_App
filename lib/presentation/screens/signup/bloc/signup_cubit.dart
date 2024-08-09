@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todo/application/constants/app_constants.dart';
 import 'package:todo/application/enums/load_status.dart';
@@ -28,7 +29,7 @@ class SignUpCubit extends Cubit<SignUpState> {
           await user.updateDisplayName(getUserName(user.email ?? ''));
           await user.updatePhotoURL(AppConstants.defaultImage);
           emit(state.copyWith(
-              status: LoadStatus.success, messenger: 'Register successfully'));
+              status: LoadStatus.success, messenger: tr("registerSuccessfully")));
 
         }
       } on FirebaseAuthException catch (e) {
@@ -47,7 +48,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       return true;
     }
     emit(state.copyWith(
-        errorPassword: 'Mật khẩu phải có 6 ký tự, một chữ hoa và một số'));
+        errorPassword: tr("passwordRequirements")));
     return false;
   }
 
@@ -58,7 +59,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       return true;
     }
     emit(state.copyWith(
-        errorConfirm: 'Mật khẩu không trùng khớp'));
+        errorConfirm: tr("passwordMismatch")));
     return false;
   }
 
@@ -69,7 +70,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       return true;
     }
     emit(state.copyWith(
-        errorUserName: 'Không đúng định dạng email'));
+        errorUserName: tr("invalidEmailFormat")));
     return false;
   }
 
