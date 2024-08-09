@@ -105,6 +105,7 @@
   "passwordMismatch": "Passwords do not match",
   "passwordRequirements": "Password must be at least 6 characters long, contain an uppercase letter, and include a number",
   "incorrectAccountInfo": "Incorrect account information",
-  "cannotBeEmpty": "Cannot be empty"
+  "cannotBeEmpty": "Cannot be empty",
+  "reportTimeFocus" : "Report time focus"
 
 }

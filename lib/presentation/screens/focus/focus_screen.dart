@@ -64,7 +64,7 @@ class _FocusScreenState extends State<FocusScreen>
         backgroundColor: currentTheme.primaryColor,
         title: Text(
           tr("focus"),
-          style: AppTextStyle.textXl
+          style: AppTextStyle.textBase
               .copyWith(fontWeight: FontWeight.w600, color: AppColors.white),
         ),
         centerTitle: true,
