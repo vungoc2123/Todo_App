@@ -148,6 +148,10 @@ class $AssetsIconsGen {
   SvgGenImage get iconLanguage =>
       const SvgGenImage('assets/icons/icon_language.svg');
 
+  /// File path: assets/icons/icon_report.svg
+  SvgGenImage get iconReport =>
+      const SvgGenImage('assets/icons/icon_report.svg');
+
   /// File path: assets/icons/icon_tick.svg
   SvgGenImage get iconTick => const SvgGenImage('assets/icons/icon_tick.svg');
 
@@ -216,6 +220,7 @@ class $AssetsIconsGen {
         iconDelete,
         iconEdit,
         iconLanguage,
+        iconReport,
         iconTick,
         musicAlt,
         pause,

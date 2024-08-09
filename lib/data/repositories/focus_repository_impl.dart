@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todo/domain/models/response/focus/focus_response.dart';
+import 'package:todo/domain/models/response/report_focus/report_focus.dart';
 import 'package:todo/domain/repositories/focus_repository.dart';
 
 class FocusRepositoryImpl implements FocusRepository {
   final db = FirebaseFirestore.instance;
+  final _auth = FirebaseAuth.instance;
   String name = "focus";
 
   @override
@@ -17,18 +20,32 @@ class FocusRepositoryImpl implements FocusRepository {
   }
 
   @override
-  Future<List<FocusResponse>> getList(String uid) async {
+  Future<List<ReportFocus>> getReportFocus(List<String> dates) async {
     try {
-      QuerySnapshot snapshot = await db.collection(name).get();
-      if (snapshot.docs.isNotEmpty) {
-        return snapshot.docs.map((doc) {
-          return FocusResponse.fromJson(doc.data() as Map<String, dynamic>);
-        }).toList();
+      List<ReportFocus> data = [];
+      for (var x in dates) {
+        double totalTime = 0;
+        QuerySnapshot snapshot = await db
+            .collection(name)
+            .where("uid", isEqualTo: _auth.currentUser?.uid)
+            .where('dateTime', isEqualTo: x)
+            .get();
+        if (snapshot.docs.isNotEmpty) {
+          final response = snapshot.docs.map((doc) {
+            return FocusResponse.fromJson(doc.data() as Map<String, dynamic>);
+          }).toList();
+          for (var res in response) {
+            totalTime += res.completedTime.ceil();
+          }
+          data.add(ReportFocus(date: x, time: totalTime/60));
+        }
+        else {
+          data.add(ReportFocus(date: x));
+        }
       }
-      return [];
+      return data;
     } catch (e) {
-      print(e);
-      return [];
+      throw ();
     }
   }
 }

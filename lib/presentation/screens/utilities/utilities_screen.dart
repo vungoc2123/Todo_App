@@ -1,6 +1,5 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +10,8 @@ import 'package:todo/gen/assets.gen.dart';
 import 'package:todo/presentation/common_widgets/app_bottom_sheet.dart';
 import 'package:todo/presentation/common_widgets/app_network_image.dart';
 import 'package:todo/presentation/routes/route_name.dart';
+import 'package:todo/presentation/screens/report_focus/report_focus_cubit.dart';
+import 'package:todo/presentation/screens/report_focus/report_focus_widget.dart';
 import 'package:todo/presentation/screens/utilities/bloc/utilities_cubit.dart';
 import 'package:todo/presentation/screens/utilities/bloc/utilities_state.dart';
 import 'package:todo/presentation/screens/utilities/widget/item_widget.dart';
@@ -69,7 +70,7 @@ class _UtilitiesScreenState extends State<UtilitiesScreen> with RouteAware {
         backgroundColor: currentTheme.primaryColor,
         title: Text(
           tr("utilities"),
-          style: AppTextStyle.textXl
+          style: AppTextStyle.textBase
               .copyWith(fontWeight: FontWeight.w600, color: AppColors.white),
         ),
         centerTitle: true,
@@ -132,7 +133,10 @@ class _UtilitiesScreenState extends State<UtilitiesScreen> with RouteAware {
                   ),
                 ),
               ),
-
+              SizedBox(height:  16.h),
+              BlocProvider(
+                  create: (context) => ReportFocusCubit(),
+                  child: const ReportFocusWidget()),
               // item utilities
               SizedBox(
                 height: 16.h,

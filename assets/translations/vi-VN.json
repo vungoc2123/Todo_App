@@ -105,6 +105,6 @@
   "passwordMismatch": "Mật khẩu không khớp",
   "passwordRequirements": "Mật khẩu phải có 6 ký tự, một chữ hoa và một số",
   "incorrectAccountInfo": "Sai thông tin tài khoản",
-  "cannotBeEmpty": "Không được để trống"
-
+  "cannotBeEmpty": "Không được để trống",
+  "reportTimeFocus": "Thông kê giờ tập chung (Phút)"
 }

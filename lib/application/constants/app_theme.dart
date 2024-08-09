@@ -12,6 +12,7 @@ class AppThemeModel {
 class MyAppTheme {
   static final theme1 = ThemeData(
     primaryColor: Colors.blue,
+    indicatorColor: Colors.red,
     scaffoldBackgroundColor: Colors.white,
     colorScheme: const ColorScheme.light(
       primary: Colors.blue,
@@ -21,6 +22,7 @@ class MyAppTheme {
 
   static final theme2 = ThemeData(
     primaryColor: Colors.red,
+    indicatorColor: Colors.green,
     scaffoldBackgroundColor: Colors.white,
     colorScheme: const ColorScheme.light(
       primary: Colors.red,
@@ -31,6 +33,7 @@ class MyAppTheme {
   // Thêm các theme khác ở đây
   static final theme3 = ThemeData(
     primaryColor: Colors.purple,
+    indicatorColor: Colors.orange,
     scaffoldBackgroundColor: Colors.white,
     colorScheme: const ColorScheme.light(
       primary: Colors.purple,
@@ -40,6 +43,7 @@ class MyAppTheme {
 
   static final theme4 = ThemeData(
     primaryColor: AppColors.yellow,
+    indicatorColor: Colors.blueAccent,
     scaffoldBackgroundColor: Colors.white,
     colorScheme: const ColorScheme.light(
       primary: Colors.purple,
@@ -49,6 +53,7 @@ class MyAppTheme {
 
   static final theme5 = ThemeData(
     primaryColor: Colors.green,
+    indicatorColor: Colors.red,
     scaffoldBackgroundColor: Colors.white,
     colorScheme: const ColorScheme.light(
       primary: Colors.purple,
@@ -58,6 +63,7 @@ class MyAppTheme {
 
   static final theme6 = ThemeData(
     primaryColor: AppColors.greenA5,
+    indicatorColor: Colors.deepOrangeAccent,
     scaffoldBackgroundColor: Colors.white,
     colorScheme: const ColorScheme.light(
       primary: Colors.purple,
@@ -67,6 +73,7 @@ class MyAppTheme {
 
   static final theme7 = ThemeData(
     primaryColor: AppColors.orange,
+    indicatorColor: Colors.redAccent,
     scaffoldBackgroundColor: Colors.white,
     colorScheme: const ColorScheme.light(
       primary: Colors.purple,
