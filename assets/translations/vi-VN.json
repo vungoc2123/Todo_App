@@ -99,5 +99,6 @@
   "requireName": "Tên không được để trống",
   "search": "Tìm kiếm",
   "clickInput": "Nhấn vào hộp nhập liệu để tìm kiếm",
-  "cancelSearch": "Hủy bỏ"
+  "cancelSearch": "Hủy bỏ",
+  "reportTimeFocus": "Thông kê giờ tập chung (Phút)"
 }
