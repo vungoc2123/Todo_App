@@ -62,10 +62,9 @@ class _HomeTabState extends State<HomeTab> {
     HomePageModel(
         name: tr("explore"),
         iconUrl: Assets.icons.duration.path,
-        child: Container()
-        // child: BlocProvider(
-        //     create: (BuildContext context) => FocusCubit(),
-        //     child: const FocusScreen())
+        child: BlocProvider(
+            create: (BuildContext context) => FocusCubit(),
+            child: const FocusScreen())
     ),
     HomePageModel(
       name: tr("document"),

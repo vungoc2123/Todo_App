@@ -9,10 +9,11 @@ class NotificationService {
         .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
         ?.requestNotificationsPermission();
+    const iosInitialize = DarwinInitializationSettings();
     const androidInitialize =
         AndroidInitializationSettings('mipmap/ic_launcher');
     const initializationSettings =
-        InitializationSettings(android: androidInitialize);
+        InitializationSettings(android: androidInitialize, iOS: iosInitialize);
     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onDidReceiveNotificationResponse: (response) {});
   }
@@ -24,11 +25,18 @@ class NotificationService {
             channelDescription: 'your channel description',
             importance: Importance.max,
             priority: Priority.high,
-            playSound:true,
+            playSound: true,
             sound: RawResourceAndroidNotificationSound('rengreng'),
             ticker: 'ticker');
+    const DarwinNotificationDetails iosNotificationDetails =
+        DarwinNotificationDetails(
+          presentAlert: true,
+          presentBadge: true,
+          presentSound: true,
+          sound: null,
+        );
     const NotificationDetails notificationDetails =
-        NotificationDetails(android: androidNotificationDetails);
+        NotificationDetails(android: androidNotificationDetails, iOS: iosNotificationDetails);
     await flutterLocalNotificationsPlugin
         .show(id, title, body, notificationDetails, payload: 'item x');
   }
