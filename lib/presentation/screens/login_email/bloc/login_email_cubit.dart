@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todo/application/constants/app_constants.dart';
 import 'package:todo/application/enums/load_status.dart';
@@ -17,11 +18,11 @@ class LoginEmailCubit extends Cubit<LoginEmailState>{
         );
 
         if (credential.user != null){
-          emit(state.copyWith(status: LoadStatus.success, messenger: "Đăng nhập thành công"));
+          emit(state.copyWith(status: LoadStatus.success, messenger: tr("loginSuccess")));
         }
       } on FirebaseAuthException catch (e) {
         if (e.code == 'invalid-credential') {
-          emit(state.copyWith(status: LoadStatus.failure,messenger: 'Sai thông tin tài khoản'));
+          emit(state.copyWith(status: LoadStatus.failure,messenger: tr("incorrectAccountInfo")));
           return;
         }
         emit(state.copyWith(status: LoadStatus.failure,messenger: e.code));
@@ -44,11 +45,11 @@ class LoginEmailCubit extends Cubit<LoginEmailState>{
 
   bool checkUserName(){
     if(state.userName == null || state.userName == ""){
-      emit(state.copyWith(errorUserName: 'Không được để trống'));
+      emit(state.copyWith(errorUserName: tr("cannotBeEmpty")));
       return false;
     }
     if(!AppConstants().emailRegExp.hasMatch(state.userName!)){
-      emit(state.copyWith(errorUserName: 'Sai định dạng email'));
+      emit(state.copyWith(errorUserName: tr("invalidEmailFormat")));
       return false;
     }
     emit(state.copyWith(errorUserName: ''));
@@ -56,11 +57,11 @@ class LoginEmailCubit extends Cubit<LoginEmailState>{
   }
   bool checkPass(){
     if(state.password == null || state.password == ""){
-      emit(state.copyWith(errorPassword: 'Không được để trống'));
+      emit(state.copyWith(errorPassword: tr("cannotBeEmpty")));
       return false;
     }
     if(!AppConstants().passwordRegExp.hasMatch(state.password!)){
-      emit(state.copyWith(errorPassword: 'mật khẩu phải có ít nhất 6 ký tự, một chữ hoa và một chữ số'));
+      emit(state.copyWith(errorPassword: tr("passwordRequirements")));
       return false;
     }
     emit(state.copyWith(errorPassword: ''));

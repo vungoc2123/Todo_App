@@ -100,5 +100,11 @@
   "search": "Tìm kiếm",
   "clickInput": "Nhấn vào hộp nhập liệu để tìm kiếm",
   "cancelSearch": "Hủy bỏ",
+  "registerSuccessfully": "Đăng ký thành công",
+  "invalidEmailFormat": "Không đúng định dạng email",
+  "passwordMismatch": "Mật khẩu không khớp",
+  "passwordRequirements": "Mật khẩu phải có 6 ký tự, một chữ hoa và một số",
+  "incorrectAccountInfo": "Sai thông tin tài khoản",
+  "cannotBeEmpty": "Không được để trống",
   "reportTimeFocus": "Thông kê giờ tập chung (Phút)"
 }

@@ -24,6 +24,7 @@ void main() async {
   await ThemeConfig.getCurrentTheme();
   await IconLoadingConfig.getCurrentIconLoading();
   await AnimationFocusConfig.getCurrentAnimation();
+
   await NotificationService.initialize();
   // await EnvConfigs.init();
   // ApiClientProvider.init(); // init api client
