@@ -24,7 +24,8 @@ class FocusCubit extends Cubit<FocusState> {
     double timeCompleted = state.time - state.timeRemaining;
     FocusResponse focus = FocusResponse(
         id: '',
-        uID: _auth.currentUser?.uid ?? '',
+        uid: _auth.currentUser?.uid ?? '',
+        dateTime: DateTime.now().toFormattedString(),
         completedTime: timeCompleted);
     repo.addFocus(focus);
   }
