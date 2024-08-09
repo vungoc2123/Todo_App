@@ -99,49 +99,49 @@ class _ListTaskScreenState extends State<ListTaskScreen> with RouteAware {
             SizedBox(
               height: 8.h,
             ),
-            Expanded(
-              child: BlocBuilder<ListTaskCubit, ListTaskState>(
-                buildWhen: (previous, current) =>
-                    previous.listTask != current.listTask ||
-                    previous.listTaskCompleted != current.listTaskCompleted ||
-                    previous.status != current.status ||
-                    previous.listTaskCompletedInit !=
-                        current.listTaskCompletedInit ||
-                    previous.listTaskInit != current.listTaskInit,
-                builder: (BuildContext context, ListTaskState state) {
-                  if (state.listTask.isEmpty &&
-                      state.listTaskCompleted.isEmpty &&
-                      state.status == LoadStatus.initial) {
-                    return Center(
-                      child: SizedBox(
-                        height: 120.h,
-                        child: const AppLoadingIndicator(
-                          color: AppColors.colorPrimary,
+            BlocBuilder<ListTaskCubit, ListTaskState>(
+              buildWhen: (previous, current) =>
+                  previous.listTask != current.listTask ||
+                  previous.listTaskCompleted != current.listTaskCompleted ||
+                  previous.status != current.status ||
+                  previous.listTaskCompletedInit !=
+                      current.listTaskCompletedInit ||
+                  previous.listTaskInit != current.listTaskInit,
+              builder: (BuildContext context, ListTaskState state) {
+                if (state.listTask.isEmpty &&
+                    state.listTaskCompleted.isEmpty &&
+                    state.status == LoadStatus.initial) {
+                  return Center(
+                    child: SizedBox(
+                      height: 120.h,
+                      child: const AppLoadingIndicator(
+                        color: AppColors.colorPrimary,
+                      ),
+                    ),
+                  );
+                }
+                if (state.listTask.isEmpty &&
+                    state.listTaskCompleted.isEmpty &&
+                    state.status != LoadStatus.initial) {
+                  return Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Assets.images.task.image(width: 100.r, height: 100.r),
+                        SizedBox(
+                          height: 8.h,
                         ),
-                      ),
-                    );
-                  }
-                  if (state.listTask.isEmpty &&
-                      state.listTaskCompleted.isEmpty &&
-                      state.status != LoadStatus.initial) {
-                    return Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Assets.images.task.image(width: 100.r, height: 100.r),
-                          SizedBox(
-                            height: 8.h,
-                          ),
-                          Text(
-                            tr('youHaveNotTask'),
-                            style: AppTextStyle.textBase,
-                          )
-                        ],
-                      ),
-                    );
-                  }
-                  return SingleChildScrollView(
+                        Text(
+                          tr('youHaveNotTask'),
+                          style: AppTextStyle.textBase,
+                        )
+                      ],
+                    ),
+                  );
+                }
+                return Expanded(
+                  child: SingleChildScrollView(
                     child: Column(
                       children: [
                         ListTaskWidget(
@@ -154,9 +154,9 @@ class _ListTaskScreenState extends State<ListTaskScreen> with RouteAware {
                         )
                       ],
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
           ],
         ),

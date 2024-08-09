@@ -95,55 +95,55 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
               SizedBox(height: 20.h),
               title(),
               SizedBox(height: 20.h),
-              Expanded(
-                child: BlocConsumer<TaskGroupCubit, TaskGroupState>(
-                  listener: (BuildContext context, TaskGroupState state) {
-                    if (state.status == LoadStatus.failure) {
-                      AppToast.showToastError(context,
-                          title: tr('processFailed'));
-                    }
-                  },
-                  listenWhen: (previous, current) =>
-                      previous.status != current.status,
-                  buildWhen: (previous, current) =>
-                      previous.taskGroups != current.taskGroups ||
-                      previous.status != current.status,
-                  builder: (BuildContext context, state) {
-                    if (state.taskGroups.isEmpty &&
-                        state.status != LoadStatus.initial) {
-                      return Expanded(
-                        child: SizedBox(
-                          width: 1.sw,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Assets.images.teamWork
-                                  .image(width: 100.r, height: 100.r),
-                              SizedBox(
-                                height: 8.h,
-                              ),
-                              Text(
-                                tr('youHaveNotTaskGroup'),
-                                style: AppTextStyle.textBase,
-                              )
-                            ],
-                          ),
+              BlocConsumer<TaskGroupCubit, TaskGroupState>(
+                listener: (BuildContext context, TaskGroupState state) {
+                  if (state.status == LoadStatus.failure) {
+                    AppToast.showToastError(context,
+                        title: tr('processFailed'));
+                  }
+                },
+                listenWhen: (previous, current) =>
+                    previous.status != current.status,
+                buildWhen: (previous, current) =>
+                    previous.taskGroups != current.taskGroups ||
+                    previous.status != current.status,
+                builder: (BuildContext context, state) {
+                  if (state.taskGroups.isEmpty &&
+                      state.status != LoadStatus.initial) {
+                    return Expanded(
+                      child: SizedBox(
+                        width: 1.sw,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Assets.images.teamWork
+                                .image(width: 100.r, height: 100.r),
+                            SizedBox(
+                              height: 8.h,
+                            ),
+                            Text(
+                              tr('youHaveNotTaskGroup'),
+                              style: AppTextStyle.textBase,
+                            )
+                          ],
                         ),
-                      );
-                    }
-                    if (state.status == LoadStatus.initial &&
-                        state.taskGroups.isEmpty) {
-                      return Center(
-                        child: SizedBox(
-                          height: 120.h,
-                          child: const AppLoadingIndicator(
-                            color: AppColors.colorPrimary,
-                          ),
+                      ),
+                    );
+                  }
+                  if (state.status == LoadStatus.initial &&
+                      state.taskGroups.isEmpty) {
+                    return Center(
+                      child: SizedBox(
+                        height: 120.h,
+                        child: const AppLoadingIndicator(
+                          color: AppColors.colorPrimary,
                         ),
-                      );
-                    }
-                    return SingleChildScrollView(
+                      ),
+                    );
+                  }
+                  return Expanded(
+                    child: SingleChildScrollView(
                       child: ListView.separated(
                         itemCount: state.taskGroups.length,
                         shrinkWrap: true,
@@ -206,9 +206,9 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
                           height: 16.h,
                         ),
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
             ]),
           ),
