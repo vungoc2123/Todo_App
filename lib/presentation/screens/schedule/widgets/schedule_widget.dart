@@ -49,16 +49,18 @@ class ScheduleWidget extends StatelessWidget {
           Text(
             event.title,
             style: AppTextStyle.textSm.copyWith(fontWeight: FontWeight.w600),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
           SizedBox(
             height: 4.h,
           ),
           Text(
-            event.content ?? "" '\n',
+            event.content ?? "" ,
             style: AppTextStyle.textSm.copyWith(
                 fontWeight: FontWeight.w400,
                 color: Colors.black.withOpacity(0.6)),
-            maxLines: 2,
+            maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
         ],

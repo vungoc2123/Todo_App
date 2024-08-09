@@ -86,9 +86,6 @@ class _EditScheduleState extends State<EditSchedule> {
           }
           if (state.loadStatus == LoadStatus.success) {
             Navigator.of(context).pop();
-            if (widget.event != null) {
-              Navigator.of(context).pop();
-            }
             Navigator.of(context).pop(true);
             AppToast.showToastSuccess(context, title: tr('processSuccess'));
           }
