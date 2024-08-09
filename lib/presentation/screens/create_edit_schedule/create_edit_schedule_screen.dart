@@ -85,16 +85,8 @@ class _EditScheduleState extends State<EditSchedule> {
                 barrierDismissible: false);
           }
           if (state.loadStatus == LoadStatus.success) {
-
-            if (widget.event != null) {
-              Navigator.of(context).pop();
-              Navigator.of(context).pop();
-              Navigator.of(context).pop(true);
-            }
-            else{
-              Navigator.of(context).pop();
-              Navigator.of(context).pop(true);
-            }
+            Navigator.of(context).pop();
+            Navigator.of(context).pop(true);
             AppToast.showToastSuccess(context, title: tr('processSuccess'));
           }
           if (state.loadStatus == LoadStatus.failure) {
