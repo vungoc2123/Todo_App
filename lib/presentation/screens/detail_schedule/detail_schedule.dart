@@ -96,10 +96,14 @@ class _DetailScheduleState extends State<DetailSchedule> {
                   ),
                 ),
                 InkWell(
-                  onTap: () {
-                    Navigator.of(context).pushNamed(
+                  onTap: () async {
+
+                    final result = await Navigator.of(context).pushNamed(
                         RouteName.createEditSchedule,
                         arguments: widget.event);
+                    if(result == true){
+                      Navigator.of(context).pop(true);
+                    }
                   },
                   child: Container(
                     padding: EdgeInsets.all(8.r),
@@ -118,13 +122,6 @@ class _DetailScheduleState extends State<DetailSchedule> {
                 InkWell(
                   onTap: () {
                     _cubit.deleteEvent(widget.event.idEvent);
-                    // showDialog(
-                    //     context: context,
-                    //     builder: (context) => ConfirmWidget(
-                    //           onConfirm: () {
-                    //             _cubit.deleteEvent(widget.event.idEvent);
-                    //           },
-                    //         ));
                   },
                   child: Container(
                     padding: EdgeInsets.all(8.r),
