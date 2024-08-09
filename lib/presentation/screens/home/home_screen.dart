@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -94,118 +95,120 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
               SizedBox(height: 20.h),
               title(),
               SizedBox(height: 20.h),
-              BlocConsumer<TaskGroupCubit, TaskGroupState>(
-                listener: (BuildContext context, TaskGroupState state) {
-                  if (state.status == LoadStatus.failure) {
-                    AppToast.showToastError(context,
-                        title: tr('processFailed'));
-                  }
-                },
-                listenWhen: (previous, current) =>
-                    previous.status != current.status,
-                buildWhen: (previous, current) =>
-                    previous.taskGroups != current.taskGroups ||
-                    previous.status != current.status,
-                builder: (BuildContext context, state) {
-                  if (state.taskGroups.isEmpty &&
-                      state.status != LoadStatus.initial) {
-                    return Expanded(
-                      child: SizedBox(
-                        width: 1.sw,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Assets.images.teamWork
-                                .image(width: 100.r, height: 100.r),
-                            SizedBox(
-                              height: 8.h,
-                            ),
-                            Text(
-                              tr('youHaveNotTaskGroup'),
-                              style: AppTextStyle.textBase,
-                            )
-                          ],
-                        ),
-                      ),
-                    );
-                  }
-                  if (state.status == LoadStatus.initial &&
-                      state.taskGroups.isEmpty) {
-                    return Center(
-                      child: SizedBox(
-                        height: 120.h,
-                        child: const AppLoadingIndicator(
-                          color: AppColors.colorPrimary,
-                        ),
-                      ),
-                    );
-                  }
-                  return SingleChildScrollView(
-                    child: ListView.separated(
-                      itemCount: state.taskGroups.length,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (BuildContext context, int index) {
-                        return ClipRRect(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: AppColors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(16.r))),
-                            child: InkWell(
-                              borderRadius: BorderRadius.circular(16.r),
-                              onTap: () {
-                                Navigator.of(context).pushNamed(
-                                    RouteName.listTask,
-                                    arguments: ListTaskArguments(
-                                        id: state.taskGroups[index].id));
-                              },
-                              child: Slidable(
-                                  key: UniqueKey(),
-                                  endActionPane: ActionPane(
-                                    extentRatio: 0.4,
-                                    motion: const ScrollMotion(),
-                                    dismissible:
-                                        DismissiblePane(onDismissed: () {
-                                      cubit.deleteTaskGroup(
-                                          state.taskGroups[index].id);
-                                    }),
-                                    children: [
-                                      SlidableAction(
-                                        onPressed: (context) {
-                                          handleUpdate(index);
-                                        },
-                                        autoClose: false,
-                                        backgroundColor: AppColors.yellow,
-                                        foregroundColor: Colors.white,
-                                        icon: Icons.edit,
-                                      ),
-                                      SlidableAction(
-                                        onPressed: (context) {
-                                          cubit.deleteTaskGroup(
-                                              state.taskGroups[index].id);
-                                        },
-                                        backgroundColor: AppColors.pinkSubText,
-                                        foregroundColor: Colors.white,
-                                        icon: Icons.delete,
-                                      ),
-                                    ],
-                                  ),
-                                  child: ItemTaskGroup(
-                                      itemTaskGroupModel:
-                                          state.taskGroups[index])),
-                            ),
+              Expanded(
+                child: BlocConsumer<TaskGroupCubit, TaskGroupState>(
+                  listener: (BuildContext context, TaskGroupState state) {
+                    if (state.status == LoadStatus.failure) {
+                      AppToast.showToastError(context,
+                          title: tr('processFailed'));
+                    }
+                  },
+                  listenWhen: (previous, current) =>
+                      previous.status != current.status,
+                  buildWhen: (previous, current) =>
+                      previous.taskGroups != current.taskGroups ||
+                      previous.status != current.status,
+                  builder: (BuildContext context, state) {
+                    if (state.taskGroups.isEmpty &&
+                        state.status != LoadStatus.initial) {
+                      return Expanded(
+                        child: SizedBox(
+                          width: 1.sw,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Assets.images.teamWork
+                                  .image(width: 100.r, height: 100.r),
+                              SizedBox(
+                                height: 8.h,
+                              ),
+                              Text(
+                                tr('youHaveNotTaskGroup'),
+                                style: AppTextStyle.textBase,
+                              )
+                            ],
                           ),
-                        );
-                      },
-                      separatorBuilder: (BuildContext context, int index) =>
-                          SizedBox(
-                        height: 16.h,
+                        ),
+                      );
+                    }
+                    if (state.status == LoadStatus.initial &&
+                        state.taskGroups.isEmpty) {
+                      return Center(
+                        child: SizedBox(
+                          height: 120.h,
+                          child: const AppLoadingIndicator(
+                            color: AppColors.colorPrimary,
+                          ),
+                        ),
+                      );
+                    }
+                    return SingleChildScrollView(
+                      child: ListView.separated(
+                        itemCount: state.taskGroups.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (BuildContext context, int index) {
+                          return ClipRRect(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: AppColors.white,
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(16.r))),
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(16.r),
+                                onTap: () {
+                                  Navigator.of(context).pushNamed(
+                                      RouteName.listTask,
+                                      arguments: ListTaskArguments(
+                                          id: state.taskGroups[index].id));
+                                },
+                                child: Slidable(
+                                    key: UniqueKey(),
+                                    endActionPane: ActionPane(
+                                      extentRatio: 0.4,
+                                      motion: const ScrollMotion(),
+                                      dismissible:
+                                          DismissiblePane(onDismissed: () {
+                                        cubit.deleteTaskGroup(
+                                            state.taskGroups[index].id);
+                                      }),
+                                      children: [
+                                        SlidableAction(
+                                          onPressed: (context) {
+                                            handleUpdate(index);
+                                          },
+                                          autoClose: false,
+                                          backgroundColor: AppColors.yellow,
+                                          foregroundColor: Colors.white,
+                                          icon: Icons.edit,
+                                        ),
+                                        SlidableAction(
+                                          onPressed: (context) {
+                                            cubit.deleteTaskGroup(
+                                                state.taskGroups[index].id);
+                                          },
+                                          backgroundColor: AppColors.pinkSubText,
+                                          foregroundColor: Colors.white,
+                                          icon: Icons.delete,
+                                        ),
+                                      ],
+                                    ),
+                                    child: ItemTaskGroup(
+                                        itemTaskGroupModel:
+                                            state.taskGroups[index])),
+                              ),
+                            ),
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) =>
+                            SizedBox(
+                          height: 16.h,
+                        ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             ]),
           ),
