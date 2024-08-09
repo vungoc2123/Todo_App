@@ -77,8 +77,8 @@ class _UpdateUserScreenState extends State<UpdateUserScreen>{
                   showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                        title: const Text(
-                          "Chọn từ nguồn",
+                        title: Text(
+                          tr("chooseFromSource"),
                           textAlign: TextAlign.center,
                         ),
                         content: BlocProvider.value(
